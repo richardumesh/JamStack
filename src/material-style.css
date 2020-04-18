@@ -1,0 +1,54 @@
+::ng-deep .mat-focused .mat-form-field-label {
+  /*change color of label*/
+  color: #66B9CE !important;
+  /* color: red */
+}
+
+::ng-deep .mat-form-field-appearance-legacy .mat-form-field-infix {
+  padding: 9px 0px 7px 0px !important
+}
+
+::ng-deep .mat-form-field-label {
+  /*change color of label*/
+  /* color: #000000 !important; */
+  color: #444444 !important;
+  font-family: var(--secondary-font) !important;
+  font-size: 18px !important;
+  /* font-weight: 500 !important; */
+  letter-spacing: 0.46px !important;
+  line-height: 25px !important;
+}
+
+::ng-deep input.mat-input-element {
+   color: #444444 !important;
+  font-family: var(--secondary-font) !important;
+  font-size: 18px !important;
+  /* font-weight: 500 !important; */
+  letter-spacing: 0.46px !important;
+  line-height: 25px !important;
+}
+
+
+::ng-deep .mat.form.field {
+  color: #444444;
+  font-family: var(--secondary-font);
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 0.46px;
+  line-height: 25px;
+  text-align: center;
+}
+
+
+::ng-deep.mat-form-field-underline {
+  /*change color of underline*/
+  background-color: #B8B8B8 !important;
+  /* background-color: green !important; */
+}
+
+::ng-deep.mat-form-field-ripple {
+  background-color: transparent !important;
+  /*change color of underline when focused*/
+  /* background-color: #444444 !important;; */
+}
+/*  */

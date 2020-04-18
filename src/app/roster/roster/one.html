@@ -1,0 +1,238 @@
+<mat-horizontal-stepper (selectionChange)="stepClicker($event)" [disableRipple]="true" labelPosition="bottom"
+        #stepper>
+        <mat-step [stepControl]="firstFormGroup" (click)="stepClicker('first')" class="text-center">
+          <ng-template matStepperIcon="edit">
+            Step1
+          </ng-template>
+          <p class="step1-title m-t-40">Select the date of the stressful event </p>
+          <ng-template matStepLabel>Select Date</ng-template>
+          <div *ngIf="!futureDate">
+
+            <p class="step1-content m-t-20">This is a day when your students may experience stress. This could be an
+              exam
+              or an
+              assignment. Or it might be a time of year they feel stressed, like the beginning of a new year or unit.
+            </p>
+            <div class="buttons-container">
+              <button class="buttonStart m-t-20 w-100" (click)="clicked('now')" matStepperNext>NOW</button>
+              <button class="buttonStart m-t-20 w-100" (click)="clicked('future')">FUTURE DATE</button>
+              <div class="future-date-txt">You can schedule the activity for a later date. It's more impactful when students
+                do it at a time when you expect school might be stressful for them.
+              </div>
+            </div>
+          </div>
+          <div *ngIf="futureDate">
+            <p class="step1-content m-t-20">FUTURE DATE</p>
+            <div class="future-date-txt">You can schedule the activity for a later date. It's more impactful when students
+              do it at a time when you expect school might be stressful for them.
+            </div>
+            <div class="row" style="display:flex;justify-content:space-between">
+              <div class="col-sm-6">
+                <div class="selected-time">{{DayAndDate}}</div>
+                <mat-calendar class="date-conatiner" [selected]="selectedDate" [startAt]="startAt" [minDate]="minDate"
+                  [maxDate]="maxDate" (selectedChange)="onSelect($event,'first')">
+                </mat-calendar>
+              </div>
+              <div class="col-sm-6">
+                <div class="selected-time">{{selectedTime}}</div>
+                <div class="time-container">
+                  <div class="selectedTime" *ngFor="let item of time" [class.selected]="item === selectedItem">
+                    <div (click)="getTime(item)" id="time" class="times">{{item}}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button class="buttonStart m-t-20" (click)="postDateTime();" matStepperNext>NEXT</button>
+          </div>
+        </mat-step>
+        <mat-step [stepControl]="secondFormGroup">
+          <form [formGroup]="secondFormGroup">
+            <ng-template matStepLabel>Build Roster</ng-template>
+            <div *ngIf="buildRosterPage">
+              <p class="step1-title m-t-40 m-b-20">Build your Roster</p>
+              <p class="step1-content m-t-20">A roster lists the students who will recieve the helpful writing
+                activities.
+                Below are three ways to build your roster.</p>
+              <div class="row m-t-40 m-b-20 padding-1">
+                <div class="col-sm-4 display-flex-row m-5">
+                  <div (click)="buildRoster('googleclassroom')" class="roster-build-options">
+                    <img src="../../../assets/images/classroom-logo.png" height="30px" width="30px" />
+                    <p class="roster-title m-t-10">Connect to Google Classroom</p>
+                    <p class="roster-content">and integrate your existing rosters.</p>
+                  </div>
+                </div>
+                <div class="col-sm-4 display-flex-row m-5">
+                  <div (click)="buildRoster('googlesheet')" class="roster-build-options p12">
+                    <img src="../../../assets/images/excel-sheet-logo.png"
+                      height="35px" width="35px" />
+                    <p class="roster-title" style="margin-top: 5px;">Download Roster Spreadsheet Template</p>
+                    <p class="roster-content">and upload your roster data.</p>
+                  </div>
+                </div>
+                <div class="col-sm-4 display-flex-row m-5">
+                  <label class="roster-build-options" for="file2">
+                    <img src="../../../assets/images/link-icon.png"
+                      height="30px" width="30px" />
+                    <p class="roster-title m-t-10">Create a Roster Invitation Link</p>
+                    <p class="roster-content">and share the link with your students.</p>
+                  </label>
+                  <button style="display:none" type="button" id="file2" (click)="buildRoster('sendlink')"
+                    matStepperNext></button>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="googlePage">
+              <p class="step1-title m-t-40">Build your Roster</p>
+              <p class="step1-content m-t-20">Download the Unleash Excel file to build a personalized roster list of
+                your students. Students Email ID or Mobile Number is required.
+              </p>
+              <button class="download-google-sheet m-t-20" (click)="exportAsXLSX()"><img
+                  src="../../../assets/images/excel-sheet-logo.png" height="35px"
+                  width="35px" class="m-r10"> DOWNLOAD </button>
+              <p class="step1-content m-t-20 m-b-20">Upload the completed roster to Unleash.</p>
+              <div class="file-upload">
+                <div class="row" style="padding : 0px 33px;">
+                  <div class="col-sm-7">
+                    <div class="uploader">{{fileToUpload}}</div>
+                    <div class="hint-text">Success! Click "NEXT" to send or schedule activity.</div>
+                  </div>
+                  <label class="col-sm-5">
+                    <input type="file" (change)="selectImage($event)" name="fileupload" value="fileupload"
+                      id="fileupload" style="display:none">
+                    <label for="fileupload">
+                      <div class="upload-button">UPLOAD</div>
+                    </label>
+                  </label>
+                </div>
+              </div>
+              <input style="display:none" type="file" id="file2" ng2FileSelect [uploader]="uploader"
+                (onFileSelected)="onFileSelected($event)" />
+              <button class="buttonStart m-t-20" (click)="getAllDetails();" matStepperNext>NEXT</button>
+            </div>
+            <div *ngIf="googleClassRoom">
+              <p class="step1-title m-t-40">Select Google Classroom Account</p>
+              <div *ngFor="let item of availClassRooms" class="account-container">
+                <div class="row m-t-20 accounts" (click)='selectedAccount(item)'>
+                  <div class="col-sm-1">
+                    Image
+                  </div>
+                  <div class="emails">{{item.gmail}}</div>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="className">
+              <p class="step1-title m-t-40">Google Classroom is Connected!</p>
+              <p class="subtitle-class-room-select m-t-20">Search for the class you wish to send activity to:</p>
+              <p *ngIf="beforeSelectClass" class="select-class-name m-t-40" (click)='selectClass()'>Google Class Name<span><img
+                    src="../../../assets/images/arrow-down.png" height="25" width="25px;"></span></p>
+              <div *ngIf="afterSelectClass">
+                <p class="classLable m-t-40">Class Name</p>
+                <p class="selected-class-name">{{selectedClassName}}<span><span *ngIf="selectedClassName"
+                      class="glyphicon glyphicon-menu-up"></span></span></p>
+                <div class="classes-box">
+                  <div class="scroll-window" slimScroll [scrollEvents]="scrollEvents">
+                    <p class="class-item" (click)='classNameSelected(item)' *ngFor="let item of availClass">{{item}}</p>
+                  </div>
+                </div>
+              </div>
+              <button class="buttonStart m-t-b-90" (click)="getAllDetails();" matStepperNext>NEXT</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step>
+          <ng-template matStepLabel>Send Activity</ng-template>
+          <p class="step1-title m-t-40">Review & Send Activity</p>
+          <p class="step1-content m-t-20 pad-0">Your students will recieve the activity as an email or text message. It
+            will be a short writing activity that will take about 10-15 minutes.
+          </p>
+          <div class="form-container text-center" style="align-items:center">
+            <p class="form-heading" *ngIf="!future">Send Activity</p>
+            <div class="w-100" style="text-align:start">
+              <div class="row m-p-0">
+                <div class="row m-p-0">
+                  <div *ngIf="(futureGoogleClass) || (futureGoogleSheet) || (futureSendLink)" class="col-sm-2">
+                    <p class="activity-content">On</p>
+                  </div>
+                  <div *ngIf="(futureGoogleClass) || (futureGoogleSheet) || (futureSendLink)" class="col-sm-5">
+                    <input class="invisible" matInput [matDatepicker]="picker" [min]="minDate"
+                      (dateChange)="onSelect($event, 'change')">
+                    <mat-datepicker #picker></mat-datepicker>
+                    <p (click)="picker.open()" class="activity-content color-main border-bottom">{{allDetails.day}},
+                      {{allDetails.month}}</p>
+                  </div>
+                  <div *ngIf="(futureGoogleClass) || (futureGoogleSheet) || (futureSendLink)"
+                    class="col-sm-1 display-flex-row">
+                    <p class="activity-content">at</p>
+                  </div>
+                  <div *ngIf="(futureGoogleClass) || (futureGoogleSheet) || (futureSendLink)"
+                    class="col-sm-4 time-send">
+                    <mat-form-field class="w-100" style="margin-top:-40px;">
+                      <mat-label class="remove-label">Favorite food</mat-label>
+                      <mat-select class="activity-content color-main" [(value)]="timeSelected">
+                        <mat-option class="color-main" [value]="selectedTime">
+                          {{selectedTime}}
+                        </mat-option>
+                        <mat-option *ngFor="let item of time" [value]="item">
+                          {{item}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                </div>
+
+                <div *ngIf="(nowGoogleClass) || (futureGoogleClass) || (dknowGoogleClass)" class="col-sm-2">
+                  <br>
+                  <p class="activity-content" style="margin-top:5px;">To</p>
+                </div>
+                <div *ngIf="(nowGoogleClass) || (futureGoogleClass) || (dknowGoogleClass)" class="col-sm-10">
+                  <p class="activity-heading">Google Class</p>
+                  <p class="activity-content border-bottom">{{allDetails.class}}</p>
+                </div>
+                <div class="col-sm-2">
+                  <div
+                    *ngIf="(nowGoogleSheet) || (dknowGoogleSheet) || (nowSendLInk) || (futureSendLink) || (dknowSendLink)">
+                    <p class="activity-content">To</p>
+                  </div>
+                </div>
+                <div
+                  *ngIf="(nowGoogleClass) || (futureGoogleClass) || (dknowGoogleClass) || (futureGoogleSheet) || (nowGoogleSheet) || (dknowGoogleSheet) || (nowSendLInk) || (futureSendLink) || (dknowSendLink)"
+                  class="col-sm-10">
+                  <p class="activity-heading">Group Name</p>
+                  <p class="activity-content border-bottom">{{allDetails.gradeName}}</p>
+                </div>
+                <div class="col-sm-2">
+
+                </div>
+                <div
+                  *ngIf="(nowGoogleClass) || (futureGoogleClass) || (dknowGoogleClass) || (futureGoogleSheet) || (nowGoogleSheet) || (dknowGoogleSheet) || (nowSendLInk) || (futureSendLink)|| (dknowSendLink) "
+                  class="col-sm-10">
+                  <p class="activity-heading">Grade Level</p>
+                  <p class="activity-content border-bottom">{{allDetails.grade}}</p>
+                </div>
+                <div *ngIf="( ((nowSendLInk) || (futureSendLink)|| (dknowSendLink)) && (!linkCopied) )" class="col-sm-7 m-t-40">
+                  <input type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]="link_text"
+                    value="https://unleash.app/hgywf" class="w-100 link-holder h-35">
+                </div>
+                <div *ngIf="( ((nowSendLInk) || (futureSendLink) || (dknowSendLink)) && (!linkCopied) )" class="col-sm-5 m-t-40">
+                  <button (click)="copyText()" class="buttonStart w-100 h-35">COPY LINK</button>
+                </div>
+
+                <div *ngIf="(nowSendLInk) || (futureSendLink) || (dknowSendLink)" class="col-sm-12">
+                  <p *ngIf="linkCopied" style="color : #89C9D9" class="link-para m-t-20"> Copied to Clipboard</p>
+                  <p *ngIf="!linkCopied" class="link-para m-t-20"> Copy the link above to distribute and have my students add themselves to
+                    my roster to recieve the activity.</p>
+                </div>
+              </div>
+            </div>
+            <button *ngIf="(!future) && (now)" (click)="navigateToPage('dashboard')"
+              class="buttonStart m-t-20 w-100">SEND</button>
+            <button *ngIf="(dont_know) && (!send_link)" (click)="navigateToPage('dashboard')"
+              class="buttonStart m-t-20 w-100">SAVE FOR LATER</button>
+            <button *ngIf="(!now) && (future)" (click)="navigateToPage('dashboard')"
+              class="buttonStart m-t-20 w-100">SCHEDULE</button>
+            <div class="m-t-20 view-roster" data-toggle="modal" data-target="#viewRosterModal">View Roster</div>
+          </div>
+          <a class="view-activity" data-toggle="modal" data-target="#myModal">View Activity Your Students Will Do</a>
+        </mat-step>
+      </mat-horizontal-stepper>
+    

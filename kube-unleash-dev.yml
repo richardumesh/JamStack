@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dev-unleash-ui
+  namespace: "develop"
+spec:
+  selector:
+    matchLabels:
+      app: dev-unleash-ui
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: dev-unleash-ui
+    spec:
+      containers:
+      - name: dev-unleash-ui
+        image: registry2.agiliz.tech/dev-unleash-ui
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            memory: "100Mi"
+            cpu: "40m"
+          limits:
+            memory: "250Mi"
+            cpu: "100m"
+      imagePullSecrets:
+        - name: regcred5
+      restartPolicy: Always
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dev-unleash-ui
+  namespace: "develop"
+spec:
+  type: NodePort
+  ports:
+  - port: 80
+    targetPort: 80
+    nodePort: 31865
+    protocol: TCP
+    name: dev-unleash-ui
+  selector:
+    app: dev-unleash-ui
+

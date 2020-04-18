@@ -1,0 +1,313 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';learn-more */
+
+@import '~ngx-toastr/toastr';
+:root {
+  --primary-font: 'Rubik';
+  --secondary-font: 'Assistant';
+}
+
+.step1-title {
+  color: #444444;
+  font-family: var(--primary-font);
+  font-size: 23px;
+  font-weight: 500;
+  letter-spacing: 0.49px;
+  line-height: 28px;
+  text-align: center;
+}
+
+.number {
+  color: #59B3CA;
+  font-family: var(--secondary-font);
+  font-size: 55px;
+  font-weight: 900;
+  letter-spacing: 0.98px;
+  line-height: 67px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.flex-center {
+  display: flex; 
+  justify-content: center;
+}
+
+.step {
+  color: #939393;
+  font-family: var(--secondary-font);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 12px;
+  text-align: center;
+}
+
+.padding-5 {
+  padding: 1px !important;
+}
+
+.h-35 {
+  height: 35px !important;
+}
+
+.w-50 {
+  width: 50% !important;
+}
+
+.cdk-global-overlay-wrapper, .cdk-overlay-container {
+  z-index: 9999 !important;
+}
+
+.buttonStart {
+  border-radius: 11px;
+  /* background-image: linear-gradient(to right, rgb(115, 203, 224), #ccf5ff); */
+  /* background: linear-gradient(2.41deg, #59B3CA 0%, rgb(180, 221, 230) 56.27%, #FFFFFF 100%); */
+  box-shadow: 0 2px 6px 0 rgba(152, 152, 152, 0.18);
+  height: 40px;
+  color: white;
+  width: 270px;
+  border: rgb(115, 203, 224);
+  font-size: 18px;
+  background: linear-gradient(to right top, rgb(106, 174, 190) 0%
+  /*bottom-right color*/
+  , rgb(116, 203, 224) 50%
+  /*middle color*/
+  , #a5e8f8 100%
+  /*top-left color*/
+  ), linear-gradient(#95D0DE, #95D0DE)
+  /*"faked" black background make sure to add last or it will appear before the transparent/colored layer*/
+  ;
+}
+
+.m-b-40 {
+  margin-bottom: 40px;
+}
+
+.learn-more {
+  margin-top: 30px;
+  color: #95D0DE !important;
+  font-family: var(--secondary-font);
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  line-height: 27px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.invalid {
+  color: red;
+  margin: 10px 0px;
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+.card-container {
+  min-height: 290px;
+  width: 85%;
+  text-align: center;
+  /* border: 1px solid; */
+  box-shadow: #bad6db 0px 1px 6px;
+  padding: 23px;
+  background: white;
+  border-radius: 8px;
+}
+
+input:focus, select:focus, textarea:focus, button:focus {
+  outline: none !important;
+}
+
+.m-t-10 {
+  margin-top: 10px;
+}
+
+.bg-color-grey {
+  background-color: #F4F4F4;
+}
+
+.m-r10 {
+  margin-right: 10px;
+}
+
+.p-0-20 {
+  padding : 0px 20px
+}
+
+.p-0 {
+  padding : 0px;
+}
+
+.m-p-0 {
+  margin: 0px !important;
+  padding: 0px !important;
+}
+
+.m-t-20 {
+  margin-top: 20px;
+}
+
+.m-t-30 {
+  margin-top: 30px !important;
+}
+
+.m-5 {
+  /* margin: 0px 5px; */
+}
+
+.card-text {
+  color: #575757;
+  font-family: var(--secondary-font);
+  font-size: 19px;
+  font-weight: 300;
+  line-height: 29px;
+  text-align: center;
+}
+
+.m-b-20 {
+  margin-bottom: 20px;
+}
+
+.m-t-40 {
+  margin-top: 40px !important;
+}
+
+.m-t-80 {
+  margin-top: 80px;
+}
+
+html, body {
+  height: 100%;
+  min-height: 100%;
+  overflow: auto;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+/* Material style */
+
+.mat-focused .mat-form-field-label {
+  /*change color of label*/
+  color: #66B9CE !important;
+  /* color: red */
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-infix {
+  padding: 9px 0px 7px 0px !important
+}
+
+.mat-form-field-label {
+  /*change color of label*/
+  /* color: #000000 !important; */
+  color: #444444 !important;
+  font-family: var(--secondary-font) !important;
+  font-size: 18px !important;
+  /* font-weight: 500 !important; */
+  letter-spacing: 0.46px !important;
+  line-height: 25px !important;
+}
+
+input.mat-input-element {
+  color: #444444 !important;
+  font-family: var(--secondary-font) !important;
+  font-size: 18px !important;
+  /* font-weight: 500 !important; */
+  letter-spacing: 0.46px !important;
+  line-height: 25px !important;
+}
+
+.mat.form.field {
+  color: #444444;
+  font-family: var(--secondary-font);
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 0.46px;
+  line-height: 25px;
+  text-align: center;
+}
+
+.mat-form-field-underline {
+  /*change color of underline*/
+  background-color: #B8B8B8 !important;
+  /* background-color: green !important; */
+}
+
+.mat-form-field-ripple {
+  background-color: transparent !important;
+  /*change color of underline when focused*/
+  /* background-color: #444444 !important;; */
+}
+
+@media(max-width:767px) {
+  .card-container {
+    margin-top: 40px;
+  }
+}
+
+.activity-card {
+  height: 100%;
+  overflow: auto;
+}
+
+@media screen and (max-width: 600px) {
+  html, body {
+    height: 100%;
+    min-height: 100%;
+  }
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  html, body {
+    height: 100%;
+  }
+}
+/* spinner */
+.loading {
+  position: fixed;
+  top: 57%;
+  left: 47.5%;
+ }
+  
+ .loader {
+  position: fixed;
+  top: 50%;
+  left: 48%;
+  border: 5px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 5px solid #2b3a42;
+  width: 40px;
+  height: 40px;
+  -webkit-animation: spin 1s linear infinite;
+  animation: spin 1s linear infinite;
+ }
+ .loader-container {
+  position: absolute; 
+  width:100%;
+  height: 100%;
+  background: rgba(0,0,0,.288);
+  z-index: 9999;
+ }
+  
+ @-webkit-keyframes spin {
+  0% {
+  -webkit-transform: rotate(0deg);
+  }
+  
+  100% {
+  -webkit-transform: rotate(360deg);
+  }
+ }
+  
+ @keyframes spin {
+  0% {
+  transform: rotate(0deg);
+  }
+  
+  100% {
+  transform: rotate(360deg);
+  }
+ }

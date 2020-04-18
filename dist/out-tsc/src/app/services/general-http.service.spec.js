@@ -1,0 +1,10 @@
+import { TestBed } from '@angular/core/testing';
+import { GeneralHttpService } from './general-http.service';
+describe('GeneralHttpService', () => {
+    beforeEach(() => TestBed.configureTestingModule({}));
+    it('should be created', () => {
+        const service = TestBed.get(GeneralHttpService);
+        expect(service).toBeTruthy();
+    });
+});
+//# sourceMappingURL=general-http.service.spec.js.map

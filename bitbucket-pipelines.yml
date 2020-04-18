@@ -1,0 +1,17 @@
+pipelines:
+  branches:
+    develop:
+        - step:
+            script:
+                - docker login -u $nexus_user -p $nexus_passwd $registry2_url
+                - docker build -t registry2.agiliz.tech/dev-unleash-ui -f Dockerfile-dev .
+                - docker push registry2.agiliz.tech/dev-unleash-ui
+                - curl -I -u $JENKINS_USER:$JENKINS_TOKEN $JENKINS_URL/job/dev-unleash-ui/build\?token\=$JENKINS_DEV_TOKEN
+
+
+options:
+  docker: true
+definitions:
+  services:
+    docker:
+      memory: 3072  

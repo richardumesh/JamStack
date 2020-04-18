@@ -1,0 +1,94 @@
+<ng-template matStepLabel>Send Activity</ng-template>
+          <p *ngIf="!ivitationLink" class="step1-title m-t-40">Review & Send Activity</p>
+          <p *ngIf="ivitationLink" class="step1-title m-t-40">Review Activity</p>
+          <p *ngIf="!ivitationLink" class="step1-content m-t-20 pad-0">Your students will recieve the activity as an email or text message. It
+            will be a short writing activity that will take about 10-15 minutes.
+          </p>
+          <p *ngIf="ivitationLink" class="step1-content m-t-20 pad-0">Once you share the link, your students will recieve the activity as an email or text message. It will be a short writing activity that will take about 10-15 minutes. 
+          </p>
+          <div class="form-container text-center" style="align-items:center">
+            <p class="form-heading" *ngIf="">Send Activity</p>
+            <div class="w-100" style="text-align:start">
+              <div *ngIf="roster" class="row m-p-0">
+                <div *ngIf="roster.day" class="h-30 row m-p-0">
+                  <div *ngIf="roster" class="col-sm-2 h-100">
+                    <p class="activity-content color-sec font-weight">On</p>
+                  </div>
+                  <div *ngIf="roster" class="col-sm-5 h-100">
+                    <input class="invisible" matInput [matDatepicker]="picker" [min]="minDate"
+                      (dateChange)="onSelect($event, 'change')">
+                    <mat-datepicker #picker></mat-datepicker>
+                    <p (click)="picker.open()" class="activity-content color-main border-bottom">{{roster.day}},
+                      {{roster.month}} {{roster.date}}</p>
+                  </div>
+                  <div *ngIf="roster" class="h-100 col-sm-1 display-flex-row">
+                    <p class="activity-content color-sec">at</p>
+                  </div>
+                  <div *ngIf="roster"
+                    class="col-sm-4 h-100 time-send">
+                    <mat-form-field class="w-100 color-main" style="margin-top:-20px;">
+                      <mat-label class="remove-label">Time</mat-label>
+                      <mat-select (selectionChange)="onTimeChange($event.value)" id="time-dropdown" class="activity-content" [(value)]="selectedTime">
+                        <mat-option [value]="selectedTime">
+                          {{selectedTime}}
+                        </mat-option>
+                        <mat-option *ngFor="let item of times" [value]="item">
+                          {{item}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-sm-2">
+                 
+                  </div>
+                  <div class="col-sm-10 future-date-text">
+                    The activity will become available at this time and your students will be notified via email or text message. 
+                  </div>
+             
+                </div>
+             
+                <div *ngIf="roster" class="col-sm-2">
+                  <br>
+                  <p class="activity-content color-sec font-weight" style="margin-top:5px;">To</p>
+                </div>
+                <div *ngIf="roster.class" class="col-sm-10">
+                  <p class="activity-heading">Google Class</p>
+                  <p class="activity-content color-sec border-bottom">{{roster.class}}</p>
+                </div>
+                <div class="col-sm-2">
+                  <div
+                    *ngIf="roster">
+                  </div>
+                </div>
+                <div
+                  *ngIf="roster"
+                  class="col-sm-10">
+                  <p class="activity-heading">Group Name</p>
+                  <p class="activity-content color-sec border-bottom">{{roster.groupName}}</p>
+                </div>
+                <div class="col-sm-2">
+
+                </div>
+                <div
+                  *ngIf="roster"
+                  class="col-sm-10">
+                  <p class="activity-heading">Grade</p>
+                  <p class="activity-content color-sec border-bottom">{{roster.grade}}</p>
+                </div>
+                
+              </div>
+            </div>
+            <div class="w-100" *ngIf="roster">
+              <p *ngIf="validationError" class="invalid">Please Select Valid date and time</p>
+                <button [disabled] = "validationError" *ngIf="(roster.day) && (!ivitationLink)" (click)="navigateToPage('schedule')"
+                class="buttonStart m-t-20">SCHEDULE</button>
+              <button [disabled] = "validationError" *ngIf="(!roster.day) && (!ivitationLink)" (click)="navigateToPage('send')"
+              class="buttonStart m-t-20">SEND</button>
+              <button [disabled] = "validationError" *ngIf="ivitationLink" (click)="navigateToPage('invitationLink')"
+              class="buttonStart m-t-20"> SUBMIT </button>
+            <div *ngIf="!ivitationLink" class="m-t-20 cursor-pointer view-roster" data-toggle="modal" data-target="#viewRosterModal">View Roster</div>
+            </div>
+
+          </div>
+          <a class="cursor-pointer view-activity" data-toggle="modal" data-target="#myModal">View Activity Your Students Will Do</a>
+        

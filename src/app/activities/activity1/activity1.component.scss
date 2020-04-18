@@ -1,0 +1,559 @@
+body {
+    height: 100vh !important;
+    overflow: auto;
+}
+
+.m-p-0 {
+    margin: 0px !important;
+    padding: 0px !important;
+    background-color: #f3efef;
+    min-height: 100vh;
+    height: 100px;
+}
+
+.activity-card {
+    text-align: center;
+    background-color: white;
+    margin: auto;
+    width: 100%;
+    height: 100%;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+}
+
+.h-content1 {
+    color: #000000;
+    font-family: var(--primary-font);
+    font-size: 31px;
+    font-weight: 500;
+}
+
+.p-text1 {
+    font-family: var(--secondary-font);
+    color: black;
+    font-size: 18px;
+    font-weight: 500;
+    margin-top: 30px;
+    margin-bottom: 22px;
+}
+
+.sp-text1 {
+    font-family: var(--secondary-font);
+    color: black;
+    font-size: 18px;
+    font-weight: 500;
+    margin-top: 30px;
+    margin-bottom: 22px;
+}
+
+.mb-12 {
+    margin-bottom: 12px;
+}
+
+.sm-pencil {
+    height: 85px; 
+    width: 60px;
+}
+
+.lg-pencil {
+    height: 90px; 
+    width: 75px;
+}
+
+.txt-card {
+    padding: 30px 12px;
+}
+
+.yn-card {
+    padding: 30px 12px;
+}
+
+.sec-width {
+    max-width: 400px; 
+    margin:auto;
+}
+
+.mt-20 {
+    margin-top: 20px;
+}
+
+.mb-20 {
+    margin-bottom: 20px;
+}
+
+.mb-60 {
+    margin-bottom: 60px;
+}
+
+.mb-130 {
+    margin-bottom: 130px;
+}
+
+.flx-cntr {
+    display: flex; 
+    justify-content: center;
+}
+
+.yn-pad {
+    padding:0px 20px; 
+    letter-spacing: 0.58px;
+}
+
+.s-txt-pad {
+    padding: 0px 12px; 
+    text-align: left;
+}
+
+.e-ltr {
+    letter-spacing: 0.39px;
+}
+
+.img-width {
+    width: 146px;
+}
+
+/* Padding for multi-select options */
+
+.p5 {
+    padding: 5px;
+}
+
+/* Used for Choosing 2-3 options Multi-select question type */
+
+.s-text {
+    color: #7e7b7b;
+    font-family: var(--secondary-font);
+    font-size: 13px;
+    font-weight: 300;
+}
+
+/* Used in div of Multi-Select question type */
+
+.options-list {
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+    justify-content: center;
+}
+
+/* This style will be applied before selecting or clicking the option button in Multi-select */
+
+.opt-bef-sel {
+    height: 130px;
+    width: 130px;
+    border-radius: 19px;
+    background-color: #f7f5f5;
+    border: 0px;
+    outline: none;
+}
+
+/* This style will be applied after selecting or clicking the option button in Multi-select */
+
+.opt-aft-sel {
+    height: 130px;
+    width: 130px;
+    border: 0px;
+    border-radius: 19px;
+    background-color: #FFFFFF;
+    box-shadow: 0 2px 4px 0 #D8A000;
+    outline: none;
+}
+
+/* This style will be applied for text inside the options in Multi-select */
+
+.opt-text {
+    color: black;
+    font-family: var(--secondary-font);
+    font-size: 13px;
+    font-weight: 500;
+    text-align: center;
+}
+
+/* For Text Area div */
+
+.selected-opt-div {
+    display: flex;
+    margin: auto;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Text Area */
+
+.selected-opt {
+    height: 54px;
+    width: 265px;
+    border-radius: 19px;
+    background-color: #FFFFFF;
+    border: 0px;
+    box-shadow: 0 2px 3px 0 #D8A000;
+    display: flex;
+    /* padding: 10px 22px;  */
+    padding: 10px 0px 10px 18px;
+    margin-bottom: 25px;
+}
+
+/* For Opt-text saved multi-select in next pages */
+
+.opt-text1 {
+    color: black;
+    font-family: var(--secondary-font);
+    font-size: 14px;
+    font-weight: 500;
+    text-align: left;
+}
+
+/* This style is applicable for the text area before typing the message */
+
+.bef-text {
+    box-sizing: border-box;
+    height: 367px;
+    width: 265px;
+    border: 1px solid rgba(216, 160, 0, 0.57);
+    border-radius: 19px;
+    background-color: #FFFFFF;
+    margin-top: 15px;
+    outline: none;
+}
+
+/* This style is applicable for the text are after typing the message */
+
+.aft-text {
+    box-sizing: border-box;
+    height: 367px;
+    width: 265px;
+    border: 0px;
+    box-shadow: 0 2px 3px 0 #D8A000;
+    border-radius: 19px;
+    background-color: #FFFFFF;
+    margin-top: 15px;
+    outline: none;
+}
+
+.text-inp {
+    color: #6B6B6B;
+    font-family: var(--secondary-font);
+    font-size: 14px;
+    padding: 30px 20px;
+}
+
+.icon-style {
+    height: 34px;
+    padding-right: 12px;
+}
+
+.yes-no-bef {
+    height: 43px;
+    width: 85px;
+    background-color: #ecebeb;
+    border-radius: 19px;
+    padding: 10px;
+    outline: none;
+    margin: 15px;
+}
+
+.yes-no-aft {
+    height: 43px;
+    width: 85px;
+    border: 0px;
+    border-radius: 19px;
+    background-color: #FFFFFF;
+    box-shadow: 0 2px 4px 0 #D8A000;
+    padding: 10px;
+    outline: none;
+    margin: 15px;
+}
+
+/* 
+.act-sec3 {
+    max-width: 400px;
+    margin: auto;
+} */
+
+.saved-text {
+    box-sizing: border-box;
+    height: 144px;
+    width: 265px;
+    border: 0px;
+    box-shadow: 0 2px 3px 0 #D8A000;
+    border-radius: 19px;
+    background-color: #FFFFFF;
+    margin-top: 15px;
+    color: #6B6B6B;
+    font-family: var(--secondary-font);
+    font-size: 14px;
+    padding: 30px 20px;
+    text-align: left;
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.aft-sel {
+    height: 33px;
+    width: 265px;
+    border: 0px;
+    border-radius: 16.5px;
+    background-color: #FFFFFF;
+    box-shadow: 2px 2px 9px 3px rgba(216, 160, 0, 0.57);
+    outline: none;
+}
+
+.bef-sel {
+    box-sizing: border-box;
+    height: 33px;
+    width: 265px;
+    border: 1px solid rgba(216, 160, 0, 0.57);
+    border-radius: 16.5px;
+    background-color: #FFFFFF;
+    outline: none;
+}
+
+@media screen and (min-width: 600px) {
+
+    html,
+    body {
+      height: 100% !important;
+    }
+
+    .h-content1 {   
+        margin-top: 50px;
+        font-size: 41px;    
+    }
+    .p-text1 {
+        font-size: 23px;
+        margin-top: 20px;
+    }
+    .p-text2 {
+        font-size: 23px;
+    }
+    .act-sec3 {
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+    .aft-sel {
+        height: 40px;
+        width: 300px;
+        font-size: 18px;
+    }
+    .bef-sel {
+        height: 40px;
+        width: 300px;
+        font-size: 18px;
+    }
+    .footer {
+        margin-bottom: 80px;
+    }
+    .activity-card .row {
+        max-width: 40%;
+    }
+    .s-txt-pad {
+        width: 46%;
+        text-align: center;
+        margin: auto;
+        margin-bottom: 35px;
+        margin-top: 35px;
+    }
+    .selected-opt-div {
+        max-width: 60%;
+        margin-bottom: 35px;
+        margin-top: 35px;
+    }
+    .selected-opt {
+        margin-right: 20px;
+    }
+    .bef-text {
+        height: 136px;  
+        width: 52%;
+    }
+    .aft-text {
+        height: 136px;  
+        width: 52%;
+    }
+    .saved-text {
+        height: 136px;  
+        width: 52%; 
+    }
+    .sp-text1 {
+        font-size: 25px;
+    }
+    .img-width {
+        width: 13%;
+    }
+    .navbar-brand {
+        color: #0D0D0D;
+        font-size: 37px;
+        letter-spacing: 2.68px;
+        font-weight: 500;
+        font-family: var(--primary-font);
+    }
+    .cursor-title {
+        cursor: context-menu;
+    }
+    .color-dark {
+        color: #0D0D0D;
+    }
+    .color-white-bar{
+        background-color: #FFFFFF;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    .activity-card .navbar {
+        display: none !important;
+    }
+  }
+  .disabled{
+    cursor: not-allowed;
+}
+
+.welcome-screen {
+    .m-p-0 {
+        margin: 0px !important;
+        padding: 0px !important;
+        background-color: #f3efef;
+        min-height: 100vh;
+        height: 100%;
+      }
+    
+    .activity-card {
+        text-align: center;    
+        background-color: white; 
+        margin: auto; 
+        width:100%;
+        height: 100%;
+        padding:30px 34px;
+        display: flex;
+        flex-direction: column;
+        font-size: 16px;
+    }
+    
+    .act-sec2 {
+        padding: 0px 5px;
+    }
+    
+    .lets-talk-values { 
+        color: #000000; 
+        font-family: var(--primary-font);
+        font-size: 31px;    
+        font-weight: 500;   
+    }
+    
+    .mp-22 {
+        margin-bottom: 22px;
+    }
+    
+    .mt-0 {
+        margin-top: 0px;
+    }
+    
+    .img-wdth {
+        width: 146px;
+    }
+    
+    .p-text1 {      
+        font-family: var(--secondary-font);
+        /* color: #444444; */
+        color: black;
+        letter-spacing: 0.6px;
+        font-size: 19px;    
+        font-weight: 500;       
+        margin-top: 60px;
+        margin-bottom: 22px;
+    }
+    
+    .p-text2 {  
+        font-family: var(--secondary-font);
+        /* color: #444444; */
+        color: black;
+        letter-spacing: 0.6px;
+        font-size: 19px;    
+        font-weight: 500;       
+        text-align: center;
+    }
+    
+    .footer {
+        display: flex;
+        justify-content: center;
+    }
+    
+    .buttonBegin {
+        height: 33px;   
+        width: 265px;   
+        border: 0px;
+        border-radius: 16.5px;  
+        background-color: #FFFFFF;  
+        box-shadow: 2px 2px 9px 3px rgba(216,160,0,0.57);
+    }
+    
+    @media screen and (min-width: 640px) {
+    
+        html,
+        body {
+          height: 100% !important;
+        }
+    
+        .lets-talk-values { 
+            margin-top: 50px;
+            font-size: 41px;    
+        }
+        .p-text1 {
+            font-size: 23px;
+            margin-top: 20px;
+        }
+        .p-text2 {
+            font-size: 23px;
+        }
+        .img-wdth {
+            width: 13%;
+        }
+        .act-sec3 {
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+        .buttonBegin {
+            height: 40px;   
+            width: 25%;
+            font-size: 18px;
+            line-height: 23px;
+        }
+        .footer {
+            margin-bottom: 80px;
+        }
+        .navbar-brand {
+            color: #0D0D0D;
+            font-size: 37px;
+            letter-spacing: 2.68px;
+            line-height: 19px;
+            font-weight: 500;
+            font-family: var(--primary-font);
+        }
+        .cursor-title {
+            cursor: context-menu;
+        }
+        .color-dark {
+            color: #0D0D0D;
+        }
+        .color-white-bar{
+            background-color: #FFFFFF;
+        }
+      }
+    
+      @media(max-width:320px){
+        .navbar-header {
+          margin: 0px !important
+        }
+      }
+    
+      @media screen and (max-width: 640px) {
+        .activity-card .navbar {
+            display: none !important;
+        }
+      }
+}

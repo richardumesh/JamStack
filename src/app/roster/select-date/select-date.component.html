@@ -1,0 +1,43 @@
+<ng-template matStepperIcon="edit">
+  Step1
+</ng-template>
+<p class="step1-title m-t-40 p-0-20">Select the date of the stressful event </p>
+<ng-template matStepLabel>Select Date</ng-template>
+<div *ngIf="!futureDate">
+  <div class="buttons-container">
+      <p class="step1-content p-0">This is a day when your students may experience stress. This could be an
+          exam
+          or an
+          assignment. Or it might be a time of year they feel stressed, like the beginning of a new year or unit.
+        </p>
+    <button class="buttonStart m-t-20 w-100" (click)="clicked('now')" matStepperNext>NOW</button>
+    <button class="buttonStart m-t-20 w-100" (click)="clicked('future')">FUTURE DATE</button>
+    <div class="future-date-txt">You can schedule the activity for a later date. It's more impactful when students
+      do it at a time when you expect school might be stressful for them.
+    </div>
+  </div>
+</div>
+<div *ngIf="futureDate">
+  <p class="step1-content m-t-20">FUTURE DATE</p>
+  <div class="future-date-txt">You can schedule the activity for a later date. It's more impactful when students
+    do it at a time when you expect school might be stressful for them.
+  </div>
+  <div class="row" style="display:flex;justify-content:space-between">
+    <div class="col-sm-6">
+      <div class="selected-time">{{month}}</div>
+      <mat-calendar class="date-conatiner" [selected]="selectedDate" [startAt]="startAt" [minDate]="minDate"
+         (selectedChange)="onSelect($event,'first')">
+      </mat-calendar>
+    </div>
+    <div class="col-sm-6">
+      <div class="selected-time">{{selectedTime}}</div>
+      <div class="time-container">
+        <div class="selectedTime" *ngFor="let item of time" [class.selected]="item === selectedItem">
+          <div (click)="getTime(item)" id="time" class="times">{{item}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p *ngIf="validationError" class="invalid">Please select valid date</p>
+  <button [disabled] = "validationError" class="buttonStart m-t-20" (click)="postDateTime('future');" matStepperNext>NEXT</button>
+</div>

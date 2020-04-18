@@ -1,0 +1,739 @@
+.navbar-inverse {
+  background-color: white;
+  border-color: white;
+  border-radius: 0px;
+}
+
+.icon-bar {
+  background-color: #555555;
+}
+
+.w-45 {
+  width: 45% !important;
+}
+
+.w-100 {
+  width: 100% !important;
+}
+
+.h-100 {
+  height: 100% !important;
+}
+
+.navbar-brand {
+  color: #0D0D0D;
+  font-size: 37px;
+  letter-spacing: 2.68px;
+  font-weight: 600;
+  font-family: var(--primary-font);
+}
+
+.container-fluid {
+  padding: 0px !important;
+}
+
+.container {
+  padding: 0px 65px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.menu-items {
+  margin: 7px 0px;
+  color: #0D0D0D !important;
+  font-family: var(--secondary-font);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.24px;
+}
+
+.error {
+  font-size: 9px;
+  color: red;
+}
+
+.create-account {
+  color: #FFFFFF;
+  font-family: var(--secondary-font);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.26px;
+  /* background: #5c5c5c; */
+  margin-top: 13px;
+  background-image: linear-gradient(to top, #3b3a3a, #8a8a8a);
+  padding: 5px 10px;
+  border-radius: 2px;
+}
+
+.pr-10 {
+  padding-right: 10px;
+}
+
+.dashboardContainers {
+  background-image: url("./../../assets/images/jeffrey-hamilton-unsplash.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 100%;
+}
+
+.dashboard-container-block {
+  max-width: 1000px;
+  height: 620px;
+  border-radius: 8px;
+  background-color: rgb(255, 255, 255, 0.8);
+  box-shadow: 0 4px 10px 0 rgba(108, 108, 108, 0.5);
+  margin: 5% auto;
+  /* margin-top: 10%; */
+}
+
+.dashboard-content-block {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.dashboard-userDetails-block {
+  width: 45%;
+}
+
+.dashboard-userContent-block {
+  width: 45%;
+  /* padding-bottom: 50px; */
+}
+
+.dashboard-header {
+  color: #000000;
+  font-family: var(--primary-font);
+  font-size: 39px;
+  text-align: center;
+  padding: 50px 0px;
+}
+
+.sortFilter {
+  display: flex;
+  flex-wrap: nowrap;
+  margin-top: 2px;
+  cursor: pointer;
+}
+
+.sortFilter i {
+  box-sizing: border-box;
+  height: 9px;
+  width: 9px;
+  margin: 2px;
+}
+
+.searchFilter {
+  height: 27px;
+  width: 200px;
+  border-radius: 3px;
+  background-color: #FFFFFF;
+}
+
+/* Bootstrap 3 text input with search icon */
+
+.has-search .form-control-feedback {
+  right: initial;
+  left: 0;
+  color: #ccc;
+}
+
+.has-search .form-control {
+  padding-right: 12px;
+  padding-left: 34px;
+}
+
+.form-control-feedback {
+  height: 27px;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.user-heading {
+  height: 42px;
+  color: #000000;
+  font-family: var(--primary-font);
+  font-size: 31px;
+  text-align: center;
+  margin: 20px 0px;
+}
+
+.user-message {
+  color: #000000;
+  font-family: var(--secondary-font);
+  font-size: 22px;
+  font-weight: 300;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 25px;
+}
+
+.createBlock {
+  width: 100%;
+  margin: 0 auto;
+  color: #444444;
+  font-family: var(--secondary-font);
+  font-size: 22px;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.createBlock img {
+  width: 50px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.cp {
+  cursor: pointer;
+}
+
+.buttonStart {
+  width: 100% !important;
+}
+
+.buttonCancel {
+  width: 45% !important;
+}
+
+.content-header-block {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 413px;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
+
+.content-header-block input {
+  height: 27px;
+  width: 200px;
+  border: none;
+  border-radius: 3px;
+  background-color: #FFFFFF;
+}
+
+.cardStatusBlock {
+  display: flex;
+}
+
+.content-card-block {
+  height: 400px;
+  overflow: auto;
+}
+
+.content-card {
+  max-width: 413px;
+  border-radius: 2px;
+  background-color: #FFFFFF;
+  box-shadow: 0 2px 10px 0 rgba(157, 157, 157, 0.5);
+  margin: 0 auto;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.cardHeader,
+.cardDescription {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+
+.cardDescription {
+  color: #444444;
+  font-family: var(--secondary-font);
+  font-size: 20px;
+  font-weight: 500;
+  padding-top: 10px;
+}
+
+.mat-expansion-panel-header {
+  height: auto !important;
+  padding: 5px 24px !important;
+}
+
+.viewRoster {
+  color: #444444;
+  font-family: var(--secondary-font);
+  font-size: 7px;
+  font-weight: 600;
+  letter-spacing: 0.14px;
+  text-align: center;
+  text-decoration: underline;
+  margin-left: 2px;
+}
+
+.smallFont {
+  padding-top: 10px;
+  color: #444444;
+  font-family: var(--secondary-font);
+  font-size: 12px;
+}
+
+.cardStatus {
+  font-family: var(--secondary-font);
+  font-size: 15px;
+  font-weight: 500;
+  margin-right: 5px;
+}
+
+.sent-color {
+  color: #4D9558;
+}
+
+.pending-color {
+  color: #C85656;
+}
+
+canvas {
+  width: 27px !important;
+  height: 27px !important;
+  margin: 0 auto;
+  border: 1px solid #979797;
+  border-radius: 100%;
+}
+
+.cardBody {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-action-block {
+  width: 60%;
+  display: flex;
+  flex-direction: row;
+  /* justify-content: space-between;
+    align-items: flex-end; */
+}
+
+.card-action {
+  text-align: center;
+  color: #444444;
+  margin-right: 20px;
+  font-family: var(--secondary-font);
+  font-size: 13px;
+}
+
+.card-percentage-block {
+  width: 20%;
+  margin-top: -70px;
+}
+
+.card-action img {
+  width: 20px;
+  height: 20px;
+  margin-top: 10px;
+}
+
+.archive-action {
+  margin-top: 20%;
+  text-align: right !important;
+}
+
+.archive-action img {
+  margin-right: 10px;
+}
+
+.chart {
+  margin-top: 5px;
+}
+
+.percentageChartsDetail {
+  display: flex;
+  margin-top: 5px;
+  justify-content: space-between;
+  color: #444444;
+  font-family: var(--secondary-font);
+  text-align: center;
+}
+
+.cardIndicator {
+  width: 100%;
+  text-align: right;
+}
+
+.cardDateDetail {
+  white-space: nowrap;
+  margin-left: 10px;
+  color: #444444;
+  font-family: var(--secondary-font);
+  font-size: 12px;
+  text-align: center;
+  margin-right: 5px;
+  margin-top: 3px;
+}
+
+.cardDateDetail a {
+  color: #444444;
+  font-family: var(--secondary-font);
+  font-size: 12px;
+  text-align: center;
+  text-decoration: underline;
+}
+
+.groupName {
+  font-size: 9px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.percentageText {
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: -0.57px;
+}
+
+.mat-expansion-panel-header-description {
+  margin-right: 0px;
+}
+
+.gradename {
+  color: #444444;
+  font-family: var(--secondary-font);
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.remind-header {
+  color: #000000;
+  font-family: var(--primary-font);
+  font-size: 35px;
+  font-weight: 500;
+  letter-spacing: 0.18px;
+  text-align: center;
+}
+
+.remind-sub-heading {
+  color: #444444;
+  font-family: var(--secondary-font);
+  font-size: 18px;
+  letter-spacing: 0.39px;
+  text-align: center;
+}
+
+.m-t-30 {
+  margin-top: 30px;
+}
+
+.m-b-30 {
+  margin-bottom: 30px;
+}
+
+.modal-header {
+  border-bottom: 0px !important;
+}
+
+.modal-remind-container {
+  padding: 10px 20px;
+  border-radius: 9px;
+  background-color: #EFEFEF;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+}
+
+.modal-remind-content {
+  color: #444444;
+  font-family: var(--secondary-font);
+  font-size: 16px;
+  letter-spacing: 0.34px;
+  text-align: left;
+}
+
+.remind-modal .modal-body {
+  padding: 0px 50px 25px 50px !important;
+}
+
+.remind-modal .modal-dialog {
+  margin: auto;
+  max-width: 55% !important;
+}
+
+.inp-box {
+  border: none !important;
+  text-decoration: underline !important;
+}
+
+.activity-content {
+  color: #444444;
+  font-family: var(--secondary-font);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.invisible {
+  display: block;
+  visibility: hidden;
+  height: 0;
+  width: 0;
+}
+
+::ng-deep .remove-label {
+  display: none !important;
+  margin-bottom: 5px;
+}
+
+::ng-deep .matselectEdit {
+  position: relative !important;
+  top: 35px;
+  min-width: calc(100% + 5px) !important;
+  height: 125px;
+  left: 35px;
+}
+
+::ng-deep .editTime-matSelect {
+  position: relative !important;
+  top: 16px;
+  min-width: calc(100% + 5px) !important;
+  height: 125px;
+  left: 12px;
+}
+
+.matForm1 ::ng-deep .mat-form-field-appearance-legacy .mat-form-field-infix {
+  padding: 0px !important;
+  top: -5px;
+}
+
+.duplicate-modal-div {
+  display: flex;
+  flex-direction: column;
+}
+
+.duplicate-modal-date-div ::ng-deep .mat-form-field-appearance-legacy .mat-form-field-infix {
+  min-width: 100px;
+  max-width: 130px;
+}
+
+.duplicateModal-time-div {
+  padding-left: 2px;
+}
+
+.duplicateModal-time-div .mat-form-field {
+  bottom: 3px;
+}
+
+.duplicateModal-time-div ::ng-deep .mat-form-field-appearance-legacy .mat-form-field-underline {
+  bottom: 22px;
+}
+
+.no-students {
+  text-align: center;
+  font-size: 18px;
+  margin-top: 25px;
+}
+
+/* .duplicateModal-time-div  ::ng-deep .mat-select-panel {
+    position: relative !important;
+    top: 140px;
+    min-width: calc(100% + 5px) !important;
+    height: 125px;
+    left: 10px;
+} */
+
+::ng-deep .duplicate-grade-matSelect {
+  position: relative;
+  min-width: 100%;
+  left: 40px;
+  top: 50px;
+}
+
+::ng-deep .duplicate-time-matSelect {
+  position: relative;
+  /* left: 16px; */
+  /* top: 140px; */
+  height: 125px;
+  /* min-width: 100px !important; */
+}
+
+.gradeLevel ::ng-deep .mat-form-field-appearance-legacy .mat-form-field-underline {
+  bottom: 12px;
+}
+
+.gradeLevel .example-full-width {
+  width: 100%;
+}
+
+.gradeLevel ::ng-deep .mat-select-arrow-wrapper {
+  vertical-align: bottom;
+}
+
+.duplicate-modal-date-div {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.cardBody ::ng-deep .mat-form-field-appearance-legacy .mat-form-field-underline {
+  bottom: 25px;
+}
+
+.matSelect-width {
+  width: 100px;
+  color: #444444;
+  font-family: var(--secondary-font);
+  font-size: 12px;
+}
+
+.archiveBtn {
+  width: 45% !important;
+}
+
+.archiveBtnBlock {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.buttonCancel {
+  border-radius: 11px;
+  box-shadow: 0 2px 6px 0 rgba(152, 152, 152, 0.18);
+  height: 40px;
+  color: rgb(115, 203, 224);
+  width: 270px;
+  border: rgb(115, 203, 224);
+  font-size: 18px;
+  background: white;
+}
+
+.archiveNavBlock {
+  width: 100%;
+  text-align: center;
+}
+
+.archiveNavBlock a {
+  cursor: pointer;
+  color: #5D5D5D;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+.restoreIndicator {
+  z-index: 10;
+}
+
+.duplicate-modal .modal-dialog {
+  margin: auto;
+  max-width: 40% !important;
+}
+
+@media(max-width:768px) {
+  .user-message {
+    margin: 50px 0px !important;
+  }
+
+  .container {
+    padding: 0px;
+  }
+
+  .duplicate-modal-date-div ::ng-deep .mat-form-field-appearance-legacy .mat-form-field-infix {
+    min-width: 90px;
+    max-width: 120px;
+  }
+
+  .duplicate-modal .modal-dialog {
+    margin: auto;
+    max-width: 60% !important;
+  }
+}
+
+@media(min-width:768px) and (max-width:1000px) {
+  .dashboard-userDetails-block {
+    width: 50%;
+  }
+
+  .dashboard-userContent-block {
+    width: 50%;
+    /* padding-bottom: 50px; */
+  }
+
+  .remind-modal .modal-body {
+    padding: 0px 50px 25px 50px !important;
+  }
+
+  .remind-modal .modal-dialog {
+    margin: auto;
+    max-width: 50% !important;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .dashboard-userDetails-block {
+    width: 90% !important;
+  }
+
+  .dashboard-userContent-block {
+    width: 90% !important;
+  }
+
+  .content-cards {
+    width: 300px;
+  }
+
+  .mat-expansion-panel-header {
+    min-height: 150px !important;
+  }
+
+  .card-percentage-block {
+    width: 25%;
+  }
+
+  .dashboard-container-block {
+    height: auto;
+  }
+}
+
+@media(max-width:400px) {
+  .remind-modal .modal-body {
+    padding: 5px 10px !important;
+  }
+
+  .remind-modal .modal-dialog {
+    margin: auto;
+    min-width: 80%;
+  }
+
+  .duplicate-modal .modal-dialog {
+    margin: auto;
+    max-width: 90% !important;
+  }
+
+  .duplicate-modal-date-div ::ng-deep .mat-form-field-appearance-legacy .mat-form-field-infix {
+    min-width: 75px;
+    max-width: 85px;
+  }
+}
+
+@media(min-width:400px) and (max-width:768px) {
+  .remind-modal .modal-body {
+    padding: 10px 20px !important;
+  }
+
+  .remind-modal .modal-dialog {
+    min-width: 60%;
+  }
+}
+
+/* ipad css */
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  .container-fluid {
+    height: 100%;
+  }
+
+  .container {
+    padding: 0px;
+  }
+}
+
+.show {
+  background: rgba(0, 0, 0, 0.22);
+}
+
+.w45px {
+  width: 45px;
+}

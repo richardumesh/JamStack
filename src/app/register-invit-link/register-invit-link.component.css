@@ -1,0 +1,197 @@
+.container-fluid {
+    padding: 0px !important;
+}
+
+.text-center {
+    text-align: center;
+}
+.regFont{
+    font-size: 40px;
+    font-weight: 500;
+
+}
+.studentFont{
+    font-size: 25px;
+    padding-top: 32px;
+    font-weight: 100;
+}
+
+.buttonStart {
+    border-radius: 12px;
+    box-shadow: 0 2px 6px 0 #f8d568;
+    height: 40px;
+    color: black;
+    width: 270px;
+    font-size: 18px;
+    background:none;
+}
+.pr-10 {
+    padding-right: 10px;
+}
+
+.reg-form-container {
+    max-width: 600px;
+    border-radius: 8px;
+    margin: 2% auto;
+    padding: 40px;
+}
+.form-control{
+    font-size:16px;
+}
+
+.form-header {
+    color: #000000;
+    font-family: var(--primary-font);
+    font-size: 29px;
+    font-weight: 600;
+    line-height: 35px;
+    text-align: center;
+    padding-bottom: 30px;
+}
+
+.formInput {
+    height: 45px;
+    border-radius: 12px;
+    background-color: #FFFFFF;
+    box-shadow: 0 2px 4px 0 rgba(232, 232, 232, 0.5);
+}
+
+.formInput input {
+    height: 45px;
+    border-radius: 12px;
+    border:1.2px solid #f8d568;
+}
+
+.formText {
+    height: 15px;
+    color: #5F5F5F;
+    font-family: var(--secondary-font);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.21px;
+    line-height: 15px;
+    padding-left: 7px;
+}
+
+.form-group {
+    margin-top: 10px !important;
+}
+
+.inputAlign {
+    width: 100%;
+    margin: 0px;
+    padding-bottom:18px;
+}
+
+.reg-form-block {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.nextBtn-block {
+    text-align: center;
+    padding-top: 20px;
+}
+
+.nextBtn {
+    height: 35px;
+    width: 90%;
+    margin: 0 auto;
+    border: transparent;
+    border-radius: 8px;
+    color:black;
+    font-family: var(--secondary-font);
+    font-size: 14px;
+    font-weight: 900;
+    line-height: 19px;
+
+}
+
+.error {
+    height: 14px;
+    width: 178px;
+    color: #FF9999;
+    font-family: var(--secondary-font);
+    font-size: 16px;
+    line-height: 14px;
+    white-space: nowrap;
+    margin-top: 5px;
+    padding-left: 10px;
+    padding-top: 2px;
+}
+
+/* bigger screens */
+
+@media screen and (min-width: 600px) {
+    .reg-container-block {
+        min-height: 100%;
+    }
+    html, body {
+        height: auto !important;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .reg-form-container {
+        margin-bottom: 10px !important;
+        padding: 30px;
+    }
+    .regFont{
+        font-size: 28px;
+        font-weight: 500;
+    
+    }
+}
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+    .container-fluid {
+        height: 100%;
+    }
+    .regFont{
+        font-size: 28px;
+        font-weight: 500;
+    }
+}
+
+/* iPhone X in portrait */
+
+@media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) {
+    .container-fluid {
+        height: 100%;
+    }
+    .regFont{
+        font-size: 28px;
+        font-weight: 500;
+    }
+}
+
+/* iphone 5 */
+@media screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) {
+   .buttonStart{
+        width:230px;
+    }
+    .regFont{
+        font-size: 28px;
+        font-weight: 500;
+    }
+}
+
+@media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) {
+    .reg-container-block {
+        height: 100%;
+    }
+    .regFont{
+        font-size: 28px;
+        font-weight: 500;
+    }
+}
+
+@media only screen and (min-width: 411px) and (max-width: 767px) {
+    .reg-container-block {
+        height: 100%;
+    }
+    .regFont{
+        font-size: 28px;
+        font-weight: 500;
+    }
+}

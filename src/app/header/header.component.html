@@ -1,0 +1,66 @@
+<div class="root-container root flex-display">
+  <div *ngIf="loading" class="loader-container">
+    <div class="loader"></div>
+</div>
+  <div class="flex-display">
+    <div class="header-container">
+      <div class="container-fluid">
+        <nav class="navbar custom-navbar">
+          <div class="m-t-10">
+            <div class="navbar-header" style="margin:0 15px">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar" [ngClass]="themeColor =='light' ? 'color-white-bar' : 'color-dark-bar'"></span>
+                <span class="icon-bar" [ngClass]="themeColor =='light' ? 'color-white-bar' : 'color-dark-bar'"></span>
+                <span class="icon-bar" [ngClass]="themeColor =='light' ? 'color-white-bar' : 'color-dark-bar'"></span>
+              </button>
+              <div *ngIf="!letsGetStartedFlow && !isRecoverPass" class="navbar-brand color-black cursor-title" [ngClass]="themeColor =='light' ? 'color-white' : 'color-dark'" 
+              (click)="navigateToPage('home')">Unleash</div>
+               <div *ngIf="letsGetStartedFlow || isRecoverPass" class="navbar-brand color-black cursor-title" style="cursor: context-menu;" [ngClass]="themeColor =='light' ? 'color-white' : 'color-dark'" >Unleash</div> 
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+              <ul class="nav navbar-nav navbar-left">
+                <div class="collapse navbar-collapse" id="myNavbar">
+                  <ul *ngIf=" !loggedIn && !isRecoverPass " class="nav navbar-nav navbar-right">
+                    <li><a class="menu-items " [ngClass]="themeColor =='light' ? 'color-white' : 'color-dark'"
+                        (click)="navigateToPage('about')">ABOUT</a></li>
+                    <li><a class="menu-items " [ngClass]="themeColor =='light' ? 'color-white' : 'color-dark'"
+                        (click)="navigateToPage('how-it-works')">HOW IT WORKS</a>
+                    </li>
+                  </ul>
+                </div>
+              </ul>
+              <ul class="nav navbar-nav navbar-right">
+                <div class="collapse navbar-collapse" id="myNavbar">
+                  <ul *ngIf="!loggedIn && !isRecoverPass" class="nav navbar-nav navbar-right pr-10">
+                    <li *ngIf= "showSignIn"><a [ngClass]="themeColor =='light' ? 'signIn color-white' : 'menu-items color-dark'"
+                      (click)="navigateToPage('login')">SIGN IN</a></li>
+                    <li *ngIf= "showCreateAccount"><a class="create-account color-white " 
+                      (click)="navigateToPage('registration')">CREATE ACCOUNT</a>
+                    </li>
+                  </ul>
+                  <ul *ngIf="loggedIn" class="nav navbar-nav navbar-right pr-10">
+                      <li *ngIf="showDashboard" class="cursor-pointer menu-items-settings">
+                          <div (click)="goToDashboard()" class="mt-16 cursor-pointer" [ngClass]="themeColor =='light' ? 'color-white' : 'color-dark'">DASHBOARD</div>
+                        </li>
+                        <li *ngIf="!showDashboard" class="menu-items-settings">
+                        <div class="mt-16 cursor-pointer" [ngClass]="themeColor =='light' ? 'color-white' : 'color-dark'" [matMenuTriggerFor]="settingsMenu">SETTINGS</div>
+                        <mat-menu #settingsMenu="matMenu">
+                            <div mat-menu-item class="dropdown-content-head">{{userLoggedIn.firstName}} {{userLoggedIn.lastName}}</div>
+                            <div mat-menu-item (click)="goToMyProfile()">My Profile</div>
+                            <div mat-menu-item (click)="goToDashboard()">Dashboard</div>
+                            <div mat-menu-item (click)="goToContactUs()">Contact Us</div>
+                          </mat-menu>
+                      </li>
+                        
+                    <li *ngIf="loggedIn"><a class="logout cursor-pointer" [ngClass]="themeColor =='light' ? 'color-white' : 'color-dark'"
+                        (click)="logout()">LOGOUT</a></li>
+                  </ul>
+                </div>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,137 @@
+<div class="container-fluid reg-container-block">
+    <div *ngIf="loading" class="loader-container">
+        <div class="loader"></div>
+    </div>
+    <app-header></app-header>
+    <div class="container">
+        <div class="reg-form-container">
+            <div class="form-header">
+                Create Account
+            </div>
+            <div class="google-class-block">
+                <button type="button" class="google-button" (click)="googleAuth2();">
+                    <span class="google-button__icon">
+                        <img src="./../../assets/images/GoogleIcon.svg">
+                    </span>
+                    <span class="google-button__text">Register with Google</span>
+                  </button>
+           </div>
+
+            <div class="divider"> OR </div>
+
+            <div class="reg-form-block">
+                <form [formGroup]="regForm">
+                    <div class="row form-group inputAlign">
+                        <div class="formText">
+                            <div> FIRST NAME </div>
+                        </div>
+                        <div class="formInput">
+                            <input formControlName="firstName" id="firstName" type="text"
+                                placeholder="First Name"
+                                class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && regForm.controls.firstName.errors }">
+                        </div>
+                        <div class="error" *ngIf="submitted && regForm.controls.firstName.errors?.required">First Name is
+                            required</div>
+                        <div class="error" *ngIf="submitted && regForm.controls.firstName.errors?.pattern">Please enter only alphabets.</div>
+                    </div>
+                    <div class="row form-group inputAlign">
+                        <div class="formText">
+                            <div> LAST NAME </div>
+                        </div>
+                        <div class="formInput">
+                            <input formControlName="lastName" id="lastName" type="text"
+                                placeholder="Last Name"
+                                class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && regForm.controls.lastName.errors }">
+                        </div>
+                        <div class="error" *ngIf="submitted && regForm.controls.lastName.errors?.required">Last Name is
+                            required</div>
+                        <div class="error" *ngIf="submitted && regForm.controls.lastName.errors?.pattern">Please enter only alphabets.</div>
+                    </div>
+                    <div class="row form-group inputAlign">
+                        <div class="formText">
+                            <div> EMAIL ADDRESS </div>
+                        </div>
+                        <div class="formInput">
+                            <input formControlName="email" id="email" type="text"
+                                oninput="this.value = this.value.toLowerCase()" placeholder="Email Address"
+                                class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && regForm.controls.email.errors }">
+                        </div>
+                        <div class="error" *ngIf="submitted && regForm.controls.email.errors?.required">Email is
+                            required</div>
+                        <div class="error" *ngIf="submitted && regForm.controls.email.errors?.email">Incorrect email
+                            address. Please try again.</div>
+                        <div class="error" *ngIf="emailExist">{{emailExist}}</div>
+                    </div>
+                    <div class="row form-group inputAlign">
+                        <div class="formText">
+                            <div> PASSWORD </div>
+                        </div>
+                        <div class="formInput">
+                            <input formControlName="password" id="password" type="password" placeholder="Type here..."
+                                class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && regForm.controls.password.errors }">
+                        </div>
+
+                        <div class="error" *ngIf="submitted && regForm.controls.password.errors?.required">Password
+                            is required</div>
+                        <div class="error" *ngIf="submitted && regForm.controls.password.errors?.pattern">Password must includes 6 characters,
+                             atleast 1 Uppercase, 1 Special Char and 1 number.</div>
+                        
+                    </div>
+                    <div class="row form-group inputAlign">
+                        <div class="formText">
+                            <div> CONFIRM PASSWORD </div>
+                        </div>
+                        <div class="formInput">
+                            <input maxlength="255" formControlName="confirmPassword" id="confirmPassword"
+                                type="password" placeholder="Type here..." class="form-control"
+                                [ngClass]="{ 'is-invalid': (submitted && regForm.controls.confirmPassword.errors) }">
+                        </div>
+                        <div class="error" *ngIf="submitted && regForm.controls.confirmPassword.errors?.required">
+                            Confirm Password is required</div>
+                        <div class="error"
+                            *ngIf="submitted && (regForm.controls.confirmPassword.value != regForm.controls.password.value)">
+                            Passwords must match</div>
+                    </div>
+                    <div class="tearms-block">
+                        <div>
+                            <div class="pretty p-svg p-plain">
+                                <input type="checkbox" formControlName="iAgree" id="iAgree" ng-true-value="'YES'"
+                                    ng-false-value="'NO'" />
+                                <div class="state">
+                                    <img class="svg" src="../../assets/images/tick.svg">
+                                    <label class="custom-control-label" for="iAllow"> I agree to the Unleash Terms
+                                        of Use and Privacy Policy.
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="error" *ngIf="submitted && !regForm.controls.iAgree.value">please accept the
+                                tearms and policy to continue registration
+                            </div>
+                        </div>
+                        <div class="allowArcive-block">
+                            <div class="pretty p-svg p-plain">
+                                <input type="checkbox" formControlName="iAllow" id="iAllow" />
+                                <div class="state">
+                                    <img class="svg" src="../../assets/images/tick.svg">
+                                    <label class="custom-control-label" for="iAllow"> I allow Achieve to contact me
+                                        for research purposes.
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                       
+                    </div>
+                    
+                    <div class="nextBtn-block">
+                        <button type="submit" class="btn buttonStart w-100" (click)="registerAccount()">Create Account</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <app-footer></app-footer>
+</div>

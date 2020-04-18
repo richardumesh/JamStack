@@ -1,0 +1,80 @@
+.back-to-dashboard {
+    color: #727272;	
+    font-family: var(--secondary-font);
+    font-size: 16px;	
+    font-weight: 300;	
+    letter-spacing: 0.7px;	
+    margin-top: 40px;
+    margin-bottom: 30px;
+    cursor: pointer;
+}
+.p-50 {
+    padding: 50px;
+}
+.m-cp {
+    margin-bottom: 40px;
+    cursor: pointer;
+}
+.contact-header {
+    color: #000000;	
+    font-family: var(--primary-font);
+    font-size: 39px;	
+    text-align: left;
+    padding: 0px 60px;
+}
+.contact-content-header {
+    color: #3D3D3D;	
+    font-family: var(--secondary-font);
+    font-size: 26px;	
+    font-weight: bold;	
+    letter-spacing: 0.8px;	
+}
+.hr1 {
+    box-sizing: border-box;	
+    height: 1px;	
+    border: 0.5px solid #979797;
+}
+.contactUs-col-label {
+    color: #030303;	
+    font-family: var(--secondary-font);
+    font-size: 24px;	
+    font-weight: 500;	
+    letter-spacing: 0.7px;
+    margin-top: 19px;
+}
+.contact-col-label{
+    color: #030303;	
+    font-family: var(--secondary-font);
+    font-size: 24px;	
+    font-weight: 500;	
+    letter-spacing: 0.7px;
+    margin-top: 5px;
+
+}
+
+  ::ng-deep .container-fluid {
+    padding-right: 0px; 
+     padding-left: 0px;
+    margin-right: auto;
+    margin-left: auto;
+}
+.m-t-0 {
+    margin-top: 0px;
+}
+@media(min-width:600px) {
+    .container {
+        text-align: left;
+    }
+}
+@media(max-width:600px) {
+  .container {
+        text-align: left;
+    }
+    .contact-header {
+        font-size: 35px;
+        padding: 0px;
+    }
+    .contactUs-col-label {
+        font-size: 18px;
+    }
+}

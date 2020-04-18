@@ -1,0 +1,290 @@
+.form-container {
+    background: #FFFFFF;
+    margin: 40px 35px 20px 35px;
+    padding: 20px;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px 0 rgba(196, 196, 196, 0.5) !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  .color-main {
+    color: #66B9CE !important;
+  }
+
+  .step1-content {
+    color: #444444;
+    font-size: 16px;
+    letter-spacing: 0.34px;
+    line-height: 21px;
+    text-align: center;
+  }
+
+  .font-weight {
+    font-weight: 700 !important;
+  }
+
+  .color-sec {
+    color: #444444;
+  }
+  .border-bottom {
+    border-bottom: 1px solid lightgrey;
+    padding-bottom: 2px;
+  }
+  
+  .activity-heading {
+    color: #66B9CE;
+    font-family: var(--secondary-font);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.31px;
+    line-height: 16px;
+  }
+  
+  .w-100 {
+    width: 100% !important;
+  }
+
+  .view-roster {
+    color : #89C9D9;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  
+  .time-send option {
+    max-height: 50px;
+    overflow: scroll;
+  }
+/* 
+  #time-drope ::ng-deep.mat-select-value{
+    color: #66B9CE !important;
+  } */
+
+  .activity-grade {
+    font-family: var(--secondary-font);
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.46px;
+  }
+
+  ::ng-deep .mat-select-value {
+    color: #66B9CE !important;
+  }
+  
+  
+  .activity-content {
+    font-family: var(--secondary-font);
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 0.46px;
+    /* line-height: 25px; */
+  }
+
+
+.invisible {
+  display: block;
+  visibility: hidden;
+  height: 0;
+  width: 0;
+}
+
+.h-30 { 
+  height: 30px;
+}
+
+.h-100 {
+  height: 100%
+}
+
+.future-date-text {
+  margin-bottom: 13px;
+    color: #888888;
+    font-family: Avenir;
+    font-size: 11px;
+    font-style: oblique;
+    font-weight: 300;
+    letter-spacing: 0.24px;
+    line-height: 15px;
+}
+
+@media screen and (min-width: 600px) {
+
+  html,
+  body {
+    height: 100% !important;
+  }
+
+  .buttonStart {
+    width: 100% !important;
+  }
+}
+
+
+@media(max-width:360px) {
+  ::ng-deep .mat-stepper-label-position-bottom .mat-horizontal-stepper-header {
+    padding: 24px 7px !important;
+  }
+
+  .lets-get-started-container {
+    padding: 0px !important;
+  }
+
+  .step1-content {
+    padding: 0px !important;
+  }
+
+  .roster-modal .modal-body {
+    padding: 20px 5px !important;
+  }
+
+  .buttons-container {
+    padding: 0px !important;
+  }
+
+  .row1 {
+    padding: 10px !important;
+    /* height: 100% !important; */
+
+  }
+
+  .select-class-name {
+    margin: 10px 30px !important;
+  }
+
+  .classes-box {
+    width: 272px !important;
+  }
+
+  .lets-get-started-container {
+    margin-top: 26px !important;
+    padding: 0px 15px !important;
+  }
+
+  ::ng-deep .mat-horizontal-content-container {
+    padding: 0px !important
+  }
+
+  .selected-time {
+    width: 100% !important;
+    padding: 6px 9px !important;
+    font-size: 12px !important;
+  }
+
+  .times {
+    font-size: 12px;
+  }
+
+  .time-container {
+    width: 100% !important;
+  }
+
+  ::ng-deep .mat-stepper-horizontal,
+  .mat-stepper-vertical {
+    width: 100% !important;
+  }
+}
+
+
+@media(max-width:767px) {
+  ::ng-deep .mat-stepper-label-position-bottom .mat-horizontal-stepper-header-container {
+    padding: 0px 0px !important;
+  }
+
+  .time-container {
+    width: 100% !important;
+  }
+
+  .roster-modal .modal-body {
+    padding: 20px 25px !important;
+  }
+
+  .roster-modal .modal-dialog {
+    max-width:90%;
+  }
+
+  .modal-body {
+    /* padding: 5px !important; */
+    text-align: center !important
+  }
+
+  .modal-activity-container {
+    padding: 5px !important
+  }
+
+  .row1 {
+    padding: 10px !important;
+    /* height: 100% !important; */
+  }
+
+  ::ng-deep .mat-stepper-horizontal,
+  .mat-stepper-vertical {
+    width: 100% !important;
+  }
+
+  .lets-get-started-container {
+    margin-top: 26px !important;
+    padding: 0px 15px !important;
+    padding-bottom: 20px !important;
+  }
+
+  .roster-build-options {
+    margin: 20px 0px 0px 0px;
+  }
+
+  .lets-get-started-container {
+    box-shadow: 0 0px 0px 0px;
+  }
+
+  .times {
+    font-size: 12px !important;
+  }
+
+  .selected-time {
+    width: 100% !important;
+    padding: 6px 9px !important;
+    font-size: 12px !important;
+  }
+
+  .classes-box {
+    width: 324px;
+  }
+
+  .upload-button {
+    width: 258px !important;
+    margin-top: 20px !important;
+  }
+
+  .select-class-name {
+    margin: 10px 61px !important;
+  }
+
+  ::ng-deep .mat-stepper-label-position-bottom .mat-horizontal-stepper-header-container {
+    padding: 0px 0px !important;
+  }
+
+  .mat-horizontal-content-container {
+    padding: 0px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .row1 {
+    height: auto;
+    min-height: 100%;
+  }
+
+  .roster-modal .modal-body {
+    padding: 20px !important;
+  }
+
+  .roster-modal .modal-dialog {
+    max-width:100%;
+  }
+
+  .mat-stepper-horizontal,
+  .mat-stepper-vertical {
+    width: 100%;
+  }
+}

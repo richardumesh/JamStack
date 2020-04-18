@@ -1,0 +1,143 @@
+<div class="container-fluid editProfile row1">
+    <div *ngIf="loading" class="loader-container">
+        <div class="loader"></div>
+    </div>
+    <app-header></app-header>
+
+    <div class="container-fluid">
+
+        <div class="back-to-dashboard container" (click)="goToDashboard()">&larr; Back to Dashboard</div>
+        <div class="profile-container">
+            <div class="profile-header">My Profile</div>
+            <div class="container profile-content">
+                <form [formGroup]="editBasicInfoForm">
+                <div class="row">
+                    <div class="col-md-6 p-50">
+                        <div class="profile-content-header">About You
+                            <button class="edit" *ngIf="!aboutEdit" (click)="basicInfoEdit()"><u>Edit</u></button>
+                            <button class="edit"  *ngIf="aboutEdit"  [disabled]="!editBasicInfoForm.valid" (click)="basicInfoSubmit()"><u>Save</u></button>
+                        </div>
+                        <div class="hr1"></div>
+                            <div>
+                                <div class="profile-col-label">First Name</div>
+                                <div *ngIf="!aboutEdit" class="profile-col-content">
+                                        {{profileDetails?.firstName}}
+                                </div>
+                                <input *ngIf="aboutEdit" formControlName="firstName" class="profile-col-input" type="text" required>
+                                <div class="error" *ngIf="aboutEdit && editBasicInfoForm.controls.firstName.errors ?.required">First Name is required</div>
+                                <div class="error" *ngIf="aboutEdit && editBasicInfoForm.controls.firstName.errors?.pattern">Please enter only alphabets.</div>
+                            </div>
+                            <div>
+                                <div class="profile-col-label">Last Name</div>
+                                <div *ngIf="!aboutEdit" class="profile-col-content">
+                                        {{profileDetails?.lastName}}
+                                </div>
+                                <input *ngIf="aboutEdit" formControlName="lastName" class="profile-col-input" type="text" required>
+                                <div class="error" *ngIf="aboutEdit && editBasicInfoForm.controls.lastName.errors?.required">Last Name is required</div>
+                                <div class="error" *ngIf="aboutEdit && editBasicInfoForm.controls.lastName.errors?.pattern">Please enter only alphabets.</div>
+                            </div>
+                            <div>
+                                <div class="profile-col-label">Title</div>
+                                <div *ngIf="!aboutEdit" class="profile-col-content">
+                                        {{profileDetails?.title}}
+                                </div>
+                                <select *ngIf="aboutEdit" formControlName="title" class="profile-col-input" >
+                                    <option *ngFor="let title of title" [ngValue]="title">{{title}}</option>
+                                </select>
+                                <div class="error" *ngIf="aboutEdit && editBasicInfoForm.controls.title.errors?.required">Title is required</div>
+                            </div>
+                            <div>
+                                <div class="profile-col-label">Gender</div>
+                                <div *ngIf="!aboutEdit" class="profile-col-content">
+                                        {{profileDetails?.gender}}
+                                </div>
+                                <select *ngIf="aboutEdit" formControlName="gender" class="profile-col-input" (change)="changeGender($event.target.value)">
+                                    <option *ngFor="let gender of gender" [value]="gender.id">{{gender.name}}</option>
+                                </select>
+                                <div class="error" *ngIf="aboutEdit && editBasicInfoForm.controls.gender.errors?.required">Gender is required</div>
+                                 <div *ngIf="otherGender" class="other-option-div">
+                                    <input formControlName="differentGender" class="profile-col-input" type="text" required>
+                                    <div class="error" *ngIf="otherGender && editBasicInfoForm.controls.differentGender.errors?.required">This feild is required</div>
+                                </div> 
+                            </div>
+                            <div>
+                                <div class="profile-col-label">Student Education Level</div>
+                                <div *ngIf="!aboutEdit" class="profile-col-content">
+                                        {{profileDetails?.education}}
+                                </div>
+                                <mat-form-field *ngIf="aboutEdit" class="profile-col-multiSelect">
+                                <mat-select class="matSelect" formControlName="education" multiple [(ngModel)]="profileDetails.education" required>
+                                    <mat-option *ngFor="let education of education" [value]="education">
+                                    {{education}}
+                                    </mat-option>
+                                </mat-select>
+                                </mat-form-field>
+                                <div class="error" *ngIf="aboutEdit && editBasicInfoForm.controls.education.errors?.required">Student Education Level is required</div>
+                            </div>            
+                    </div>
+
+                    <div class="col-md-6 p-50">
+                        <div class="profile-content-header">Account Details</div>
+                        <div class="hr1"></div>
+                        <div class="profile-col-label">Email</div>
+                        <div class="profile-col-content">{{profileDetails?.email}}</div>
+
+                        <div>
+                            <div class="profile-col-label">Ethnicity</div>
+                            <div *ngIf="!aboutEdit" class="profile-col-content">
+                                    {{profileDetails?.ethnicity}}
+                            </div>
+                            <select *ngIf="aboutEdit" formControlName="ethnicity" class="profile-col-input" (change)="changeEthnicity($event.target.value)" >
+                                <option *ngFor="let item of ethnicity" [value]="item.id">{{item.name}}</option>
+                            </select>
+                            <div class="error" *ngIf="aboutEdit && editBasicInfoForm.controls.ethnicity.errors?.required">Ethnicity is required</div>
+                            <div *ngIf="otherEthnicity" class="other-option-div">
+                                <input formControlName="differentEthnicity" class="profile-col-input" type="text" required>
+                                <div class="error" *ngIf="otherEthnicity && editBasicInfoForm.controls.differentEthnicity.errors?.required">This field is required </div>
+                            </div>
+                        </div>
+                      
+                        <div *ngIf="(!changePassword && (profileDetails && profileDetails.loggedInType === 'Email'))" class="profile-col-label m-cp" 
+                              (click)="openChangePassword()"><u>Change Password</u></div>
+
+
+                        <div *ngIf="changePassword" class="change-pwd-div">
+
+                            <form [formGroup]="changePwdForm">
+                                <div class="profile-col-label m-t-0"><u>Change Password</u></div>
+
+                                <div class="profile-col-label">Current Password</div>
+                                <input class="change-pwd-input" formControlName="currentPassword" type="password" placeholder="********">
+                                <div class="error" *ngIf="pwdSubmitted && (changePwdForm.get('currentPassword').errors || invalidLogin)">
+                                    <div *ngIf="changePwdForm.get('currentPassword').hasError('required') && !invalidLogin">Current Password is required</div>
+                                    <div *ngIf="invalidLogin">{{invalidLogin}}</div>
+                                </div>
+
+                                <div class="profile-col-label">New Password</div>
+                                <input class="change-pwd-input"  formControlName="newPassword" type="password" placeholder="********">
+                                <div class="error" *ngIf="pwdSubmitted && changePwdForm.get('newPassword').errors">
+                                    <div *ngIf="changePwdForm.get('newPassword').hasError('required')">New Password is required</div>
+                                    <div *ngIf="changePwdForm.get('newPassword').hasError('pattern')">Password must includes 6 characters,
+                                        atleast 1 Uppercase, 1 Special Char and 1 number.</div>
+                                </div>
+
+                                <div class="profile-col-label">Confirm Password</div>
+                                <input class="change-pwd-input" formControlName="confirmPassword" type="password" placeholder="********">
+                                <div class="error" *ngIf="pwdSubmitted && changePwdForm.get('confirmPassword').errors">
+                                    <div *ngIf="changePwdForm.get('confirmPassword').untouched && changePwdForm.get('confirmPassword').pristine">Password is required</div>
+                                    <div *ngIf="changePwdForm.get('confirmPassword').hasError('mustMatch') && changePwdForm.get('confirmPassword').dirty">Password must match</div>
+                                </div>
+                                    <div>
+                                        <span  class="change-pwd-cancel"   #cancelPasswordModel  id="cancelPasswordModel" (click)="cancel($event)"><u>CANCEL</u></span>
+                                        <span class="change-pwd-save"  (click)="savePassword()"><u>SAVE</u></span>   
+                                    </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <app-footer></app-footer>
+</div>

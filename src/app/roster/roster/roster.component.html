@@ -1,0 +1,120 @@
+<div *ngIf="loading" class="loader-container">
+    <div class="loader"></div>
+</div>
+<div class="container-fluid m-p-0 row1">
+    <app-header></app-header>
+    <div class="display-flex">
+      <div class="lets-get-started-container">
+          <mat-horizontal-stepper [linear]="isLinear"  labelPosition="bottom" class="text-center" #stepper>
+              <mat-step [stepControl]="stepOne">
+                  <ng-template matStepLabel>Select Date</ng-template>
+                <app-select-date [topicId]="topicId" (loader) = 'handleLoading($event)'></app-select-date>
+              </mat-step>
+              <mat-step [stepControl]="stepTwo">
+                  <ng-template matStepLabel>Build Roster</ng-template>
+                <app-build-roster (reviewDetails) = 'getDetails($event)' (loader) = 'handleLoading($event)' [topicId]="topicId"></app-build-roster>
+              </mat-step>
+              <mat-step [stepControl]="stepThree">
+                  <ng-template matStepLabel>Send Activity</ng-template>
+                <app-send-activity [reviewDetails]= "getReviewdetails" (rosterData)='getRoster($event)' [topicId]="topicId"></app-send-activity>
+              </mat-step>
+            </mat-horizontal-stepper>
+       </div>
+    </div>
+  
+  
+    <div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-dialog modal-lg" style="max-width:800px;">
+        <div class="modal-content">
+          <div class="modal-header">
+            <img src="../../../assets/images/cancel.png" class="close" data-dismiss="modal" height="20px" width="20px">
+            <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+            <!-- <h4 class="modal-title">Modal Header</h4> -->
+          </div>
+          <div class="modal-body">
+            <h4 class="modal-title activity-header">ACTIVITY</h4>
+            <p class="activity-sub-heading text-center m-t-30">View activity your students will do</p>
+            <p class="activiy-ques-content m-t-30 text-center">This activity has been carefully written and refined over
+              many years of Research and Development. It’s best to deliver in the form you see.</p>
+            <p class="activiy-ques-content text-center m-b-20">However, if you have concerns, please contact us.</p>
+            <div class="bg-color-grey modal-activity-container">
+              <div *ngFor="let item of activity;let i=index">
+                <p class="activity-question text-center m-t-20 ">{{item.question}}</p>
+                <p class="modal-activity-content m-t-40">{{item.label3}}</p>
+                <p class="modal-content-subheading m-t-40 m-p-0">{{item.label1}}</p>
+                <p class="choose-class" *ngIf="item.select">Choose 3</p>
+                <div *ngIf="item.select" class="row m-p-0  m-t-30">
+                  <div *ngFor="let itemSelect of item.select.dataOptions" class="col-sm-6 m-p-0">
+                    <p class="modal-activity-content">{{itemSelect.text}}</p>
+                  </div>
+                </div>
+  
+                <p class="modal-content-subheading  m-t-40" *ngIf="item.label2">{{item.label2}}</p>
+                <div class="m-t-20" *ngIf="item.textArea === 'yes'">
+                  <textarea placeholder="Write your thoughts in here." class="text-area-modal-activity"></textarea>
+                </div>
+  
+                <div *ngIf="item.questionsList">
+                  <div *ngFor="let question of item.questionsList">
+                    <div class="modal-content-subheading"> {{question.question}}</div>
+                    <div class="row m-p-0" style="display:flex">
+                      <p class="yes-no-aft" style="cursor: pointer;">YES</p>
+                      <p class="yes-no-bef" style="cursor: pointer;">NO</p>
+                      <!-- <div class="" *ngFor="let options of item.options">
+                                        <span>{{options}}</span>
+                                  </div> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="modal fade roster-modal" id="viewRosterModal" role="dialog">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <img src="../../../assets/images/cancel.png" class="close" data-dismiss="modal" height="20px" width="20px">
+            </div>
+            <div class="modal-body">
+              <div class="modal-title roster-header">ROSTER</div>
+  
+              <p class="roster-sub-heading m-t-30">Below you will find the list of students
+                who recieved the activity.
+              </p>
+  
+              <div class="bg-color-grey modal-roster-container">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                        <tr>
+                            <th> # </th>
+                            <th> First Name </th>
+                            <th> Last Name</th>
+                            <th> Phone Number</th>
+                            <th> Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let student of studentsList;let i=index">
+                            <td>{{i+1}}</td>
+                            <td>{{student.firstName}}</td>
+                            <td>{{student.lastName}}</td>
+                            <td>{{student.phoneNo}}</td>
+                            <td>{{student.emailId}}</td>
+                        </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+  
+            </div>
+          </div>
+        </div>
+    </div>
+    <app-footer></app-footer>
+  </div>
+

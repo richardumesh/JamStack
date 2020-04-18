@@ -1,0 +1,545 @@
+<div class="container-fluid dashboardContainers">
+    <div *ngIf="loading" class="loader-container">
+        <div class="loader"></div>
+    </div>
+    <app-header></app-header>
+    <div class="container">
+        <div class="dashboard-container-block">
+            <div *ngIf="!archived" class="dashboard-header">
+                Welcome to the Unleash Dashboard!
+            </div>
+            <div *ngIf="archived" class="dashboard-header">
+                Archive Folder
+            </div>
+            <div *ngIf="userData" class="dashboard-content-block">
+                <div class="dashboard-userDetails-block container">
+                    <div *ngIf="userLoggedIn" class="user-heading">
+                        Hello {{userLoggedIn.firstName}}!
+                    </div>
+                    <div *ngIf="!archived" class="user-message">
+                        Here you will find sent, scheduled and saved activities.
+                    </div>
+                    <div *ngIf="archived" class="user-message">
+                        Here are your Archived activities.
+                        You are able to restore them and
+                        send them back to the Dashboard.
+                    </div>
+                    <div class="createBlock">
+                        <div>CREATE NEW ACTIVITY</div>
+                        <div><img src="./../../assets/images/plus-icon.png"
+                                (click)="navigateToPage('lets-get-started')"></div>
+                    </div>
+                </div>
+                <div class="dashboard-userContent-block">
+                    <div class="content-header-block">
+                        <div class="sortFilter" (click)="sortData()">
+                            <div>Sort</div>
+                            <div>&nbsp; <i class="glyphicon glyphicon-triangle-top"></i><i
+                                    class="glyphicon glyphicon-triangle-bottom"></i></div>
+                        </div>
+                        <div class="searchFilter">
+                            <div class="form-group has-feedback has-search">
+                                <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                                <input type="text" class="form-control" [(ngModel)]="searchText" placeholder="Search">
+                            </div>
+                        </div>
+                    </div>
+ 
+                    <div class="content-card-block scroll-window">
+                        <div class="content-card"
+                            *ngFor="let cardData of userData.topics | filter:searchText ; let i = index">
+                            <!-- <mat-accordion>
+                                <mat-expansion-panel [expanded]="cardData.opened" [disabled]="true">
+                                    <mat-expansion-panel-header collapsedHeight="*" expandedHeight="*">
+                                        <mat-panel-title>
+                                            <div class="cardHeader">
+                                                <div class="cardStatusBlock">
+                                                    <div>
+                                                        <div *ngIf="cardData.topicState==0" class="cardStatus"
+                                                            [ngStyle]="{'color':'#C85656'}">
+                                                            Draft
+                                                        </div>
+                                                        <div *ngIf="cardData.topicState==1" class="cardStatus"
+                                                            [ngStyle]="{'color':'#FD8A3B'}">
+                                                            Scheduled
+                                                        </div>
+                                                        <div *ngIf="cardData.topicState==2" class="cardStatus"
+                                                            [ngStyle]="{'color':'#5D5D5D'}">
+                                                            Sent
+                                                        </div>
+                                                       
+                                                    </div>
+                                                    <div style="display: flex;">
+                                                        <div class="cardDateDetail" *ngIf="cardData.topicDate && !edit">
+                                                             {{cardData.topicDate |  date:'E MMM d y, h:mm a'}}</div>
+                                                        <img *ngIf="cardData.buildType === 'sendlink' " src="../../../assets/images/link-icon-vector-chain-icon-png-black-11562977302zjgcwpawbj.png"
+                                                        height="20px" width="20px" />
+                                                        <img *ngIf="cardData.createdVia === 'Google' " src="../../../assets/images/classroom-logo.png" height="20px" width="20px" />
+                                                        <img *ngIf="cardData.buildType === 'googlesheet' " src="../../../assets/images/excel-sheet-logo.png" height="27px" width="27px" />
+                                                        <div *ngIf="cardData.topicState==2" class="viewRoster" data-toggle="modal" data-target="#viewRosterModal">View Roster</div>
+                                                    </div>
+                                                </div>
+ 
+                                                <div class="cardDescription">
+                                                    <div *ngIf="!edit">
+                                                        <div>{{cardData.name}}</div>
+                                                        <div class="smallFont">{{cardData.gradeLevel}}</div>
+                                                    </div>
+ 
+                                                    <div *ngIf="edit && (cardData.status === 'Sent')">
+                                                        <div>{{cardData.name}}</div>
+                                                        <div class="smallFont">{{cardData.gradeLevel}}</div>
+                                                    </div>
+ 
+                                                   
+                                                    <div *ngIf="edit && (cardData.topicState!=2)" class="matForm1">
+                                                        <div>
+                                                            <input class="inp-box" [(ngModel)]="cardData.name" type="text" (change)="onNameChange($event.target.value)">
+                                                            <div class="error" *ngIf="nameError">Grade Name must be between 1-140 characters length.</div>
+                                                        </div>
+                                                        <mat-form-field class="matSelect-width ">
+                                                            <mat-select class="matSelect" panelClass="matselectEdit" multiple [(ngModel)]="cardData.gradeLevel">
+                                                                <mat-option *ngFor="let grade of Grades" [value]="grade">
+                                                                {{grade}}
+                                                                </mat-option>
+                                                            </mat-select>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </mat-panel-title>
+                                        <mat-panel-description>
+                                            <div class="cardIndicator" *ngIf="cardData.opened != true && !archived">
+                                                <i class="glyphicon glyphicon-plus" (click)="cardOpen(i)"></i>
+                                            </div>
+                                            <div class="cardIndicator" *ngIf="cardData.opened == true && !archived">
+                                                <i class="glyphicon glyphicon-minus" (click)="cardClose(i)"></i>
+                                            </div>
+                                            <div class="restoreIndicator w-100 h-100" *ngIf="(archived)" >
+                                                <div class="card-action w-100 h-100" >
+                                                    <div (click)="restoreArchive(cardData, i)"><img
+                                                            src="./../../assets/images/009-download.svg"></div>
+                                                    <div>Restore</div>
+                                                </div>
+                                            </div>
+                                           
+                                        </mat-panel-description>
+                                       
+                                    </mat-expansion-panel-header>
+                                </mat-expansion-panel>
+                            </mat-accordion> -->
+ 
+                            <mat-accordion>
+                                <mat-expansion-panel [expanded]="cardData.opened" [disabled]="true">
+                                    <mat-expansion-panel-header collapsedHeight="*" expandedHeight="*">
+                                        <mat-panel-title>
+                                            <div class="cardHeader">
+                                                <div class="cardStatusBlock">
+                                                    <div>
+                                                        <div *ngIf="cardData.topicState==0" class="cardStatus"
+                                                            [ngStyle]="{'color':'#C85656'}">
+                                                            Draft
+                                                        </div>
+                                                        <div *ngIf="cardData.topicState==1" class="cardStatus"
+                                                            [ngStyle]="{'color':'#FD8A3B'}">
+                                                            Scheduled
+                                                        </div>
+                                                        <div *ngIf="cardData.topicState==2" class="cardStatus"
+                                                            [ngStyle]="{'color':'#5D5D5D'}">
+                                                            Sent
+                                                        </div>
+                                                       
+                                                    </div>
+                                                    <div style="display: flex;">
+                                                        <div class="cardDateDetail" *ngIf="cardData.topicDate && !edit">
+                                                             {{cardData.topicDate |  date:'E MMM d y, h:mm a'}}</div>
+                                                        <img *ngIf="cardData.buildType === 'sendlink' " src="../../../assets/images/link-icon.png"
+                                                        height="20px" width="20px" />
+                                                        <img *ngIf="cardData.roster!='' && cardData.createdVia === 'Google' " src="../../../assets/images/classroom-logo.png" height="20px" width="20px" />
+                                                        <img *ngIf=" cardData.roster!='' && cardData.createdVia === 'Excel' " src="../../../assets/images/excel-sheet-logo.png" height="27px" width="27px" />
+                                                        <img (click)="copyLink(cardData)" matTooltip="click to copy link" *ngIf=" cardData.createdVia === 'link' " src="../../../assets/images/link-icon.png" height="20px" width="20px" />
+ 
+                                                        <div (click)="getRoster(cardData)" class="viewRoster" data-toggle="modal" data-target="#viewRosterModal">View Roster</div>
+                                                    </div>
+                                                </div>
+ 
+                                                <div class="cardDescription">
+                                                    <div *ngIf="!cardData.editing">
+                                                        <div>{{cardData.name}}</div>
+                                                        <div class="smallFont">{{cardData.gradeLevel}}</div>
+                                                    </div>
+ 
+                                                    <div *ngIf="cardData.editing && (cardData.status === 'Sent')">
+                                                        <div>{{cardData.name}}</div>
+                                                        <div class="smallFont">{{cardData.gradeLevel}}</div>
+                                                    </div>
+ 
+                                                   
+                                                    <div *ngIf="cardData.editing && (cardData.topicState!=2)" class="matForm1">
+                                                        <div>
+                                                            <input class="inp-box" [(ngModel)]="cardData.name" type="text" (change)="onNameChange($event.target.value)">
+                                                            <div class="error" *ngIf="nameError">Grade Name must be between 1-140 characters length.</div>
+                                                        </div>
+                                                        <mat-form-field class="matSelect-width ">
+                                                            <mat-select class="matSelect" panelClass="matselectEdit" multiple [(ngModel)]="cardData.gradeLevel">
+                                                                <mat-option *ngFor="let grade of Grades" [value]="grade">
+                                                                {{grade}}
+                                                                </mat-option>
+                                                            </mat-select>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </mat-panel-title>
+                                        <mat-panel-description>
+                                            <div class="cardIndicator" *ngIf="cardData.opened != true && !archived">
+                                                <i class="glyphicon glyphicon-plus" (click)="cardOpen(cardData)"></i>
+                                            </div>
+                                            <div class="cardIndicator" *ngIf="cardData.opened == true && !archived">
+                                                <i class="glyphicon glyphicon-minus" (click)="cardClose(cardData)"></i>
+                                            </div>
+                                            <div class="restoreIndicator w-100 h-100" *ngIf="(archived)" >
+                                                <div class="card-action w-100 h-100" >
+                                                    <div (click)="restoreArchive(cardData, i)"><img
+                                                            src="./../../assets/images/009-download.svg"></div>
+                                                    <div>Restore</div>
+                                                </div>
+                                            </div>
+                                        </mat-panel-description>
+ 
+                                    </mat-expansion-panel-header>
+ 
+                                    <div class="cardBody">
+                                        <div class="card-action-block" *ngIf="cardData.opened == true && !edit">
+                                                <div *ngIf="cardData.topicState==0">
+                                                  <div *ngIf="cardData.topicState!=2" class="card-action cp"
+                                                    (click)="navigateToPage('roster', cardData)">
+                                                    <div><img src="./../../assets/images/edit-icon.png"></div>
+
+                                                    <div>Edit</div>
+                                                  </div>
+                                                </div>
+                                                <div *ngIf="cardData.topicState!=0">
+                                                  <div *ngIf="cardData.topicState!=2" class="card-action cp"
+                                                    (click)="onEdit(cardData)" data-toggle="modal"
+                                                    data-target="#duplicateModal">
+                                                    <div><img src="./../../assets/images/edit-icon.png"></div>
+
+                                                    <div>Edit</div>
+                                                  </div>
+                                                </div>
+                                            <div (click)="getUnopend(cardData)" *ngIf="cardData.topicState==2 && !cardData.isArchieved" class="card-action cp"  data-toggle="modal" data-target="#remindModal">
+                                                <div><img src="./../../assets/images/resend-icon.png"></div>
+                                                <div>Remind</div>
+                                            </div>
+                                            <div *ngIf="(!cardData.editing) && (!cardData.isArchieved) && (cardData.createdVia!='link') && (cardData.topicState!=0) " class="card-action cp" data-toggle="modal" (click)="setDuplicate(cardData)" data-target="#duplicateModal">
+                                                <div ><img src="./../../assets/images/copy-icon.png"></div>
+                                                <div>Duplicate</div>
+                                            </div>
+                                            <div  *ngIf="cardData.topicState==2  && !cardData.isArchieved"  data-toggle="modal" data-target="#archiveModal" class="card-action cp" style="padding: 0px 5px;" (click)="archiveData(cardData._id);">
+                                                <div>
+                                                    <img src="./../../assets/images/trash-icon.png">
+                                                </div>
+                                                <div>Archive</div>
+                                            </div>
+                                        </div>
+ 
+                                        <div *ngIf="cardData.opened == true && (cardData.editing && !archived)" style="display: flex; width: 100%;">
+                                            <div style="display: flex; justify-content:flex-start; width: 70%;">
+                                                <div style="margin-top: 20px;">
+                                                    <input class="invisible" matInput [matDatepicker]="picker" [min]="minDate"
+                                                    (dateChange)="onSelect($event, i)">
+                                                    <mat-datepicker #picker></mat-datepicker>
+                                                    <p (click)="picker.open()" class="activity-content">Date: <span style="text-decoration: underline; cursor: pointer;"> {{cardData.topicDate |  date:'dd MMM'}}</span> at  </p>
+                                                </div>
+                                                <div style="padding-left: 2px;">
+                                                    <mat-form-field class="matSelect1" style="width: 70px;">
+                                                        <mat-label class="remove-label"></mat-label>
+                                                        <mat-select class="activity-content .mat2" panelClass="editTime-matSelect" [ngModel]="cardData.topicDate | date:'h:mm a'">
+                                                            <mat-option class="color-main" [value]="cardData.topicDate | date:'h:mm a'">
+                                                                {{cardData.topicDate |  date:'h:mm a'}}
+                                                            </mat-option>
+                                                            <mat-option *ngFor="let item of times" [value]="item">
+                                                            {{item}}
+                                                            </mat-option>
+                                                        </mat-select>
+                                                    </mat-form-field>
+                                                </div>
+                                            </div>
+                                            <div style="display: flex; justify-content:flex-end; width: 30%;">
+                                                <div class="card-action cp" style="padding: 0px 5px;">
+                                                        <div (click)="onSave(cardData)"><img src="./../../assets/images/009-download.svg"></div>
+                                                        <div>Save</div>
+                                                    </div>
+                                                    <div  *ngIf="!cardData.isArchieved && !cardData.isArchieved" class="card-action cp" style="padding: 0px 5px;" (click)="archiveData(i);">
+                                                        <div data-toggle="modal" data-target="#archiveModal">
+                                                            <img src="./../../assets/images/trash-icon.png">
+                                                        </div>
+                                                        <div>Archive</div>
+                                                    </div>
+                                                </div>
+                                        </div>
+ 
+                                        <div class="card-percentage-block" *ngIf="cardData.opened == true && !cardData.editing && !archived">
+                                            <div class="percentageCharts">
+                                                <!-- <div class="percentageChartsDetail" >
+                                                    <div style="height: 30px;width: 30px;">
+                                                        <div class="chart">
+                                                            <canvas baseChart [data]="50"
+                                                                [chartType]="pieChartType"
+                                                                [options]="pieChartOptions" [plugins]="pieChartPlugins"
+                                                                [colors]="pieChartColors1" [legend]="pieChartLegend">
+                                                            </canvas>
+                                                        </div>
+                                                    </div>
+ 
+                                                    <div>
+                                                        <div class="percentageText">10%
+                                                        </div>
+                                                        <div class="groupName">Overall</div>
+                                                    </div>
+                                                </div> -->
+                                                <div class="percentageChartsDetail" >
+                                                    <div style="height: 30px;width: 30px;">
+                                                        <div class="chart">
+                                                            <canvas baseChart [data]="cardData.chartDataOpened"
+                                                                [chartType]="pieChartType"
+                                                                [options]="pieChartOptions" [plugins]="pieChartPlugins"
+                                                                [colors]="pieChartColors2" [legend]="pieChartLegend">
+                                                            </canvas>
+                                                        </div>
+                                                    </div>
+                                                    <div class="w45px">
+                                                        <div class="percentageText">{{cardData.openedPercentage}}%</div>
+                                                        <div class="groupName">Opened</div>
+                                                    </div>
+                                                </div>
+                                                <div class="percentageChartsDetail">
+                                                    <div style="height: 30px;width: 30px;">
+                                                        <div class="chart">
+                                                            <canvas baseChart [data]="cardData.chartDataCompleted"
+                                                                [chartType]="pieChartType"
+                                                                [options]="pieChartOptions" [plugins]="pieChartPlugins"
+                                                                [colors]="pieChartColors3" [legend]="pieChartLegend">
+                                                            </canvas>
+                                                        </div>
+                                                    </div>
+                                                    <div class="w45px">
+                                                        <div class="percentageText">{{cardData.completedPercentage}}%</div>
+                                                        <div class="groupName">Completed</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+ 
+                                </mat-expansion-panel>
+                            </mat-accordion>
+ 
+                        </div>
+                    </div>
+ 
+                </div>
+            </div>
+            <div *ngIf="archived" class="archiveNavBlock" (click)="goto('dashboard');">
+                <a>Back to Dashboard</a>
+            </div>
+            <div *ngIf="!archived" class="archiveNavBlock" (click)="goto('archive');">
+                <a>Go to Archive</a>
+            </div>
+        </div>
+    </div>
+ 
+    <div class="modal fade remind-modal" id="remindModal" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <img src="../../../assets/images/cancel.png" class="close" data-dismiss="modal" height="20px"
+                        width="20px">
+                </div>
+                <div class="modal-body">
+                    <div class="modal-title remind-header">REMIND</div>
+ 
+                    <p *ngIf="studentsList.length > 0"  class="remind-sub-heading m-t-30">Below is the list of students who have not
+                        completed activity.
+                    </p>
+
+                    <div *ngIf="dataCard">
+                        <p class="no-students" *ngIf="(dataCard.completedPercentage == 100)"> Activity is completed - No Remind to Send</p> 
+                    </div>
+ 
+                    <div *ngIf="studentsList.length > 0" class="bg-color-grey modal-remind-container">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th> # </th>
+                                        <th> First Name </th>
+                                        <th> Last Name </th>
+                                        <th> Phone Number</th>
+                                        <th> Email</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let student of studentsList;let i=index">
+                                        <td>{{i+1}}</td>
+                                        <td>{{student.firstName}}</td>
+                                        <td>{{student.lastName}}</td>
+                                        <td>{{student.phoneNo}}</td>
+                                        <td>{{student.emailId}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+ 
+                    <p *ngIf="studentsList.length > 0" class="remind-sub-heading m-t-30">Remind them by resending the activity.</p>
+ 
+                    <button [disabled]="(!currTopicChosen) || (studentsList.length === 0) || (dataCard.completedPercentage == 100)" (click)="sendReminder()" class="buttonStart m-t-20 w-100">SEND</button>
+ 
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+    <div class="modal fade remind-modal" id="archiveModal" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <img src="../../../assets/images/cancel.png" class="close" data-dismiss="modal" height="20px"
+                        width="20px">
+                </div>
+                <div class="modal-body">
+                    <div class="modal-title remind-header">Archive</div>
+ 
+                    <p class="remind-sub-heading m-t-30">
+                        This Group name will be Archive and can be restored later
+                    </p>
+ 
+                    <div class="archiveBtnBlock">
+                        <button data-dismiss="modal" (click)="archive()" class="buttonStart archiveBtn m-t-20 w-45">Archive</button>
+                        <button data-dismiss="modal" class=" buttonCancel m-t-20 w-45">Cancel</button>
+                   </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+    <div class="modal fade remind-modal" id="viewRosterModal" role="dialog">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <img src="../../../assets/images/cancel.png" class="close" data-dismiss="modal" height="20px" width="20px">
+                </div>
+                <div class="modal-body">
+                  <div class="modal-title remind-header">ROSTER</div>
+     
+                  <p class="remind-sub-heading m-t-30">Below you will find the list of students
+                    who recieved the activity.
+                  </p>
+                  <div class="no-students" *ngIf="rosterList.length === 0">
+                    No students
+                  </div>
+                  
+                  <div *ngIf="rosterList.length > 0" class="bg-color-grey modal-remind-container m-t-30">
+                        <div class="table-responsive">
+                          <table class="table">
+                            <thead>
+                                <tr>
+                                    <th> # </th>
+                                    <th> First Name </th>
+                                    <th> Last Name</th>
+                                    <th> Phone Number</th>
+                                    <th> Email</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let student of rosterList;let i=index">
+                                    <td>{{i+1}}</td>
+                                <td>{{student.firstName}}</td>
+                                <td>{{student.lastName}}</td>
+                                <td>{{student.phoneNo}}</td>
+                                <td>{{student.emailId}}</td>
+                                </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+     
+                </div>
+              </div>
+            </div>
+    </div>
+ 
+    <div class="modal fade duplicate-modal" id="duplicateModal" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <img src="../../../assets/images/cancel.png" class="close" data-dismiss="modal" height="20px"
+                            width="20px">
+                    </div>
+                    <div class="modal-body">
+ 
+                        <form class="example-form" [formGroup]="options">
+ 
+                            <div class="duplicate-modal-div">
+                                <mat-form-field class="example-full-width">
+                                    <input formControlName="name" (keypress)="undoError($event)" placeholder="Group Name" matInput type='text' required>
+                                    <mat-error>
+                                        <span *ngIf="options.get('name').hasError('required')">Group Name is required</span>
+                                    </mat-error>
+                                    <mat-error>
+                                        <span *ngIf="options.get('name').hasError('maxlength')">140 Character Limit</span>
+                                    </mat-error>
+                                </mat-form-field>
+                                <div class="gradeLevel">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label required>Grade Level</mat-label>
+                                        <mat-select class="matSelect" panelClass="duplicate-grade-matSelect" formControlName="grade" multiple required>
+                                          <mat-option *ngFor="let grade of Grades" [value]="grade">
+                                            {{grade}}
+                                          </mat-option>
+                                        </mat-select>
+                                        <mat-error>
+                                            <span *ngIf="!options.get('grade').valid || options.get('grade').touched">Atleast one Grade Level is required</span>
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div *ngIf="selectedTopic.topicDate" class="duplicate-modal-date-div">
+                                    <div style="margin-top: 20px;">
+                                        <input class="invisible" matInput [matDatepicker]="picker" [min]="minDate"
+                                        (dateChange)="duplicateDateSelect($event)">
+                                        <mat-datepicker #picker></mat-datepicker>
+                                        <p (click)="picker.open()" class="activity-content">Date: <span style="text-decoration: underline; cursor: pointer;">{{selectedTopic.topicDate | date:'EEE, MMMM d, y'}}</span></p>
+                                    </div>
+                                    <div class="duplicateModal-time-div">
+                                        <mat-form-field class="matSelect1">
+                                            <mat-select class="activity-content .mat2" panelClass="duplicate-time-matSelect" (selectionChange)="onTimeChange($event)" [ngModel]="selectedTopic.selectedTime | date:'h:mm a'" [ngModelOptions]="{standalone: true}">
+                                                <mat-option class="color-main" [value]="selectedTopic.selectedTime | date:'h:mm a'">
+                                                    {{selectedTopic.selectedTime |  date:'h:mm a'}}
+                                                </mat-option>
+                                                <mat-option *ngFor="let item of times" [value]="item">
+                                                {{item}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <span class="invalid" *ngIf="validationError">Please select valid date and time</span>
+                                <mat-error *ngIf="dupError">
+                                    <div > {{dupError}}  </div>
+                                </mat-error>
+                              
+                                <div class="archiveBtnBlock">
+                                    <button *ngIf="!editTopic" [disabled] = "validationError"  (click)="duplicateTopic();" class="buttonStart archiveBtn m-t-20 w-45">Duplicate</button>
+                                    <button *ngIf="editTopic" [disabled] = "validationError"  (click)="updateTopic();" class="buttonStart archiveBtn m-t-20 w-45">Update</button>
+                                    <button data-dismiss="modal" class=" buttonCancel m-t-20 w-45">Cancel</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+    </div>
+    <app-footer></app-footer>
+</div>

@@ -1,0 +1,8 @@
+version : '3'
+services : 
+ devops-ui :
+   build : 
+     context : .
+     dockerfile : Dockerfile
+   ports :
+     - "8800:80"

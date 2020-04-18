@@ -1,0 +1,39 @@
+
+  .body { padding-bottom: 70px; } 
+  
+  .foot-brand {
+    color: #0D0D0D;
+    font-size: 14.7px;
+    letter-spacing: 0.68px;
+    letter-spacing: 1.68px;
+    font-weight: 400;
+    font-family: var(--primary-font);
+    line-height:30px;
+    bottom: 0;
+  }
+  .container-fluid {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-bottom: 10px;
+    align-items: center;
+    padding-top: 15px;
+    background-color: #555;
+    color: #fff;
+    position: relative;
+    min-height: 100px; 
+ }
+  a {
+    color: #c1e3ff;
+    text-decoration: none;
+ }
+  .color-dark {
+    color: #0D0D0D !important;
+  }
+  .color-white {
+    color: #FFFFFF !important
+  }
+  
+  
+  

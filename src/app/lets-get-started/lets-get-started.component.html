@@ -1,0 +1,42 @@
+<div *ngIf="loading" class="loader-container">
+  <div class="loader"></div>
+</div>
+<div class="container-fluid pos-relative m-p-0 row1">
+  <app-header></app-header>
+  <!-- <img src="../../assets/images/moren-hsu-359121-unsplash.png" style="margin-top:-100px;" height="100%;" width="100%" /> -->
+  <div class="display-flex">
+    <div class="lets-get-started-container">
+      <h1 class="title">Let’s Get Started</h1>
+      <p class="content m-t-40">Before we begin, give a name to the group of students you wish to help so that it will
+        be
+        easily identifiable on your dashboard.</p>
+      <div class="" style="max-width:350px">
+        <form class="example-form" [formGroup]="options" (ngSubmit)="onFormSubmit(options.value)">
+          <mat-form-field class="example-full-width">
+            <input (keypress)="omit_special_char($event)" formControlName="name" placeholder="Group Name" matInput type='text' required>
+            <mat-error>
+              <span *ngIf="options.get('name').hasError('required')">Grade Name is required</span>
+            </mat-error>
+            <mat-error>
+              <span *ngIf="options.get('name').hasError('maxlength')">140 Character Limit</span>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <mat-label required>Grade Level</mat-label>
+            <mat-select class="matSelect" formControlName="grade" multiple [(value)]="selectedGrade" required>
+              <mat-option *ngFor="let grade of Grades" [value]="grade">
+                {{grade}}
+              </mat-option>
+            </mat-select>
+            <mat-error>
+              <span *ngIf="!options.get('grade').valid || options.get('grade').touched">Atleast one Grade Level is
+                required</span>
+            </mat-error>
+          </mat-form-field>
+          <button class="next-button m-t-40 m-b-40" (click)="getData('roster');">NEXT</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <app-footer></app-footer>
+</div>

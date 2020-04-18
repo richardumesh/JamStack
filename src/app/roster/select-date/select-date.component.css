@@ -1,0 +1,266 @@
+
+.buttons-container {
+  display: flex;
+  max-width: 480px;
+  padding: 30px;
+  margin: auto;
+  /* top: 50%; */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.future-date-txt {
+  color: #444444;	
+  font-family: var(--secondary-font);
+  font-size: 11px;	
+  font-weight: 300;	
+  letter-spacing: 0.24px;	
+  text-align: center;
+  margin-top: 15px;
+}
+
+.date-conatiner {
+  opacity: 0.9 !important;
+  border-radius: 4px !important;
+  background-color: #FFFFFF !important;
+  box-shadow: 0 2px 8px 0 rgba(196, 196, 196, 0.5) !important;
+}
+
+.selected-time {
+  border-radius: 3px;
+  background-color: #FFFFFF;
+  box-shadow: 0 2px 8px 0 rgba(196, 196, 196, 0.5) !important;
+  /* margin-bottom: 40px auto; */
+  width: 70%;
+  margin: 30px auto;
+  border: 1px solid #89C9D9;
+  padding: 6px 0px;
+  color: #5F5F5F;
+  font-family: var(--secondary-font);
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 22px;
+  height: 35px;
+}
+
+.selectedTime :hover {
+  background: #89C9D9;
+}
+
+.selectedTime.selected {
+  background: #89C9D9;
+  color: white;
+}
+
+.time-container {
+  box-shadow: 0 2px 8px 0 rgba(196, 196, 196, 0.5) !important;
+  max-height: 275px;
+  overflow: scroll;
+  padding: 10px 0px;
+  margin: auto;
+  width: 50%;
+  background: #FDFDFD;
+}
+
+
+.step1-content {
+  color: #444444;
+  font-family: var(--secondary-font);
+  font-size: 16px;
+  font-weight: 300;
+  letter-spacing: 0.34px;
+  line-height: 22px;
+  text-align: center;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.m-t-20 {
+  margin-top: 20px !important;
+}
+
+@media screen and (min-width: 600px) {
+
+  html,
+  body {
+    height: 100% !important;
+  }
+
+  .buttonStart {
+    width: 100% !important;
+  }
+}
+
+
+@media(max-width:360px) {
+  ::ng-deep .mat-stepper-label-position-bottom .mat-horizontal-stepper-header {
+    padding: 24px 7px !important;
+  }
+
+  .lets-get-started-container {
+    padding: 0px !important;
+  }
+
+  .step1-content {
+    padding: 0px !important;
+  }
+
+  .roster-modal .modal-body {
+    padding: 20px 5px !important;
+  }
+
+  .buttons-container {
+    padding: 0px !important;
+  }
+
+  .row1 {
+    padding: 10px !important;
+    /* height: 100% !important; */
+
+  }
+
+  .select-class-name {
+    margin: 10px 30px !important;
+  }
+
+  .classes-box {
+    width: 272px !important;
+  }
+
+  .lets-get-started-container {
+    margin-top: 26px !important;
+    padding: 0px 15px !important;
+  }
+
+  ::ng-deep .mat-horizontal-content-container {
+    padding: 0px !important
+  }
+
+  .selected-time {
+    width: 100% !important;
+    padding: 6px 9px !important;
+    font-size: 12px !important;
+  }
+
+  .times {
+    font-size: 12px;
+  }
+
+  .time-container {
+    width: 100% !important;
+  }
+
+  ::ng-deep .mat-stepper-horizontal,
+  .mat-stepper-vertical {
+    width: 100% !important;
+  }
+}
+
+
+@media(max-width:767px) {
+  ::ng-deep .mat-stepper-label-position-bottom .mat-horizontal-stepper-header-container {
+    padding: 0px 0px !important;
+  }
+
+  .time-container {
+    width: 100% !important;
+  }
+
+  .roster-modal .modal-body {
+    padding: 20px 25px !important;
+  }
+
+  .roster-modal .modal-dialog {
+    max-width:90%;
+  }
+
+  .modal-body {
+    /* padding: 5px !important; */
+    text-align: center !important
+  }
+
+  .modal-activity-container {
+    padding: 5px !important
+  }
+
+  .row1 {
+    padding: 10px !important;
+    /* height: 100% !important; */
+  }
+
+  ::ng-deep .mat-stepper-horizontal,
+  .mat-stepper-vertical {
+    width: 100% !important;
+  }
+
+  .lets-get-started-container {
+    margin-top: 26px !important;
+    padding: 0px 15px !important;
+    padding-bottom: 20px !important;
+  }
+
+  .roster-build-options {
+    margin: 20px 0px 0px 0px;
+  }
+
+  .lets-get-started-container {
+    box-shadow: 0 0px 0px 0px;
+  }
+
+  .times {
+    font-size: 12px !important;
+  }
+
+  .selected-time {
+    width: 100% !important;
+    padding: 6px 9px !important;
+    font-size: 12px !important;
+  }
+
+  .classes-box {
+    width: 324px;
+  }
+
+  .upload-button {
+    width: 258px !important;
+    margin-top: 20px !important;
+  }
+
+  .select-class-name {
+    margin: 10px 61px !important;
+  }
+
+  ::ng-deep .mat-stepper-label-position-bottom .mat-horizontal-stepper-header-container {
+    padding: 0px 0px !important;
+  }
+
+  .mat-horizontal-content-container {
+    padding: 0px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .row1 {
+    height: auto;
+    min-height: 100%;
+  }
+
+  .roster-modal .modal-body {
+    padding: 20px !important;
+  }
+
+  .roster-modal .modal-dialog {
+    max-width:100%;
+  }
+
+  .mat-stepper-horizontal,
+  .mat-stepper-vertical {
+    width: 100%;
+  }
+}

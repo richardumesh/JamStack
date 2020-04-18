@@ -1,0 +1,93 @@
+.header {
+  color: #212121;
+  font-family: var(--primary-font);
+  font-size: 48px;
+  font-weight: 600;
+  letter-spacing: 0.96px;
+  line-height: 58px;
+  margin-top: 30px;
+}
+
+.research-para {
+  color: #212121;
+  font-family: var(--secondary-font);
+  font-size: 23px;
+  font-weight: 500;
+  line-height: 33px;
+}
+
+.heading {
+  color: #474747;
+  font-family: var(--primary-font);
+  font-size: 41px;
+  font-weight: 500;
+  letter-spacing: 0.82px;
+  line-height: 49px;
+}
+
+.research-title {
+  color: #212121;
+  font-family: var(--secondary-font);
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 39px;
+  text-decoration: underline
+}
+
+.flex-display-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex-direction: row
+}
+
+.research-subtitle {
+  color: #212121;
+  font-family: var(--secondary-font);
+  font-size: 25px;
+  font-weight: 300;
+  line-height: 39px;
+}
+
+.cards-up {
+  margin-top: -190px;
+}
+
+.research-content {
+  color: #212121;
+  font-family: var(--secondary-font);
+  font-size: 21px;
+  font-weight: 300;
+  line-height: 28px;
+}
+
+/* .card-position {
+  position: relative;
+  top :
+} */
+
+.researchLogo {
+  border: 0px;
+  border-radius: 8px;
+  box-shadow: 0 2px 3px 0 #6B6B6B;
+}
+
+@media(max-width:767px) {
+  .container {
+    text-align: center;
+    padding: 30px
+  }
+  .header {
+    font-size: 32px;
+    line-height: 45px;
+  }
+  .research-title {
+    font-size: 31px;
+  }
+  .research-content {
+    font-size: 18px;
+  }
+  .cards-up {
+    margin-top: -115px !important;
+  }
+}

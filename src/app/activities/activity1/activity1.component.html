@@ -1,0 +1,176 @@
+<div *ngIf="loading" class="loader-container">
+    <div class="loader"></div>
+</div>
+<div *ngIf="showActivity" class="container-fluid m-p-0">
+    <div class="activity-card">
+        <nav class="navbar custom-navbar">
+            <div>
+                <div class="navbar-header color-white-bar" style="margin:0 15px">
+                    <div class="navbar-brand cursor-title color-dark">Unleash</div>
+                </div>
+            </div>
+        </nav>
+
+        <div *ngIf="!showDone && currentIndex !=-1">
+            <div *ngFor="let question of activity.questions; let i=index">
+                <div *ngIf="question.type === 'multiselect' && currentIndex === i">
+                    <div class="act-sec1">
+                        <p class="h-content1">{{question.question}}</p>
+                        <p class="p-text1">{{question.label1}}</p>
+                        <p class="s-text">Choose
+                            {{question.select.min}}-{{question.select.max}}</p>
+                    </div>
+                    <div class="row options-list" *ngIf="question.select.dataOptions.length > 0">
+                        <div class="p5 col-md-3" *ngFor="let card of question.select.dataOptions;index as i">
+                            <button (click)="cardSelected(card, question);"
+                                [ngClass]="card.clicked ? 'opt-aft-sel' : 'opt-bef-sel' " style="padding: 0px 15px;">
+                                <img *ngIf="card.image === '001-pencil.svg'" class="sm-pencil"
+                                    src="../../../assets/images/{{card.image}}">
+                                <img *ngIf="card.image !== '001-pencil.svg'" class="lg-pencil"
+                                    src="../../../assets/images/{{card.image}}">
+                                <p class="opt-text">{{card.text}}</p>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="question.type === 'text' && currentIndex === i">
+                    <div class="act-sec1 s-txt-pad">
+                        <p class="p-text1">{{question.label1}}</p>
+                    </div>
+                    <div class="selected-opt-div" *ngIf="question.showSelectedOptions">
+                        <div *ngFor="let card of selectedOptions">
+                            <div class="selected-opt">
+                                <div class="flx-cntr">
+                                    <img class="icon-style" src="../../../assets/images/{{card.image}}">
+                                    <div class="opt-text1">{{card.text}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="act-sec2 s-txt-pad">
+                        <p class="p-text1">{{question.label2}}</p>
+                    </div>
+                    <div class="act-sec4">
+                        <textarea [ngClass]="textBox" [(ngModel)]="question.answer" (keyup)="textChanged(question)"
+                            placeholder="Write your thoughts in here." required></textarea>
+                    </div>
+                </div>
+
+                <div *ngIf="question.type=='yesno' && currentIndex === i " class="yn-card">
+                    <div class="act-sec1 mb-12">
+                        <p class="h-content1">{{question.question}}</p>
+                    </div>
+                    <div class="selected-opt-div" *ngIf="question.showSelectedOptions">
+                        <div *ngFor="let card of selectedOptions">
+                            <div class="selected-opt">
+                                <div class="flx-cntr">
+                                    <img class="icon-style" src="../../../assets/images/{{card.image}}">
+                                    <div class="opt-text1">{{card.text}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="act-sec3" class="sec-width">
+                        <p class="p-text1">{{question.label1}}</p>
+                        <div class="flx-cntr">
+                            <p (click)="yesNo(question,'yes');"
+                                [ngClass]="question.answer === 'yes'  ? 'yes-no-aft' : 'yes-no-bef'"
+                                style="cursor: pointer;">YES</p>
+                            <p (click)="yesNo(question ,'no');"
+                                [ngClass]="question.answer === 'no' ? 'yes-no-aft' : 'yes-no-bef'"
+                                style="cursor: pointer;">
+                                NO</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div *ngIf="currentIndex < activity.questions.length && currentIndex!=-1">
+                <div class="footer">
+                    <button
+                        [ngClass]="{'disabled': !activity.questions[currentIndex].answered, 'bef-sel': !activity.questions[currentIndex].answered, 'aft-sel': activity.questions[currentIndex].answered}"
+                        [disabled]='!activity.questions[currentIndex].answered' (click)="nextQuestion()">NEXT</button>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="showReview" class="txt-card">
+            <div class="act-sec1 mb-12">
+                <p class="h-content1">My Personal Values</p>
+            </div>
+            <div class="selected-opt-div">
+                <div *ngFor="let card of selectedOptions">
+                    <div class="selected-opt">
+                        <div class="flx-cntr">
+                            <img class="icon-style" src="../../../assets/images/{{card.image}}">
+                            <div class="opt-text1">{{card.text}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="act-sec4 flx-cntr">
+                <p class="saved-text">{{savedMessage}}</p>
+            </div>
+            <div class="act-sec4-1 mt-20">
+                <p class="sp-text1">I'm all done!</p>
+            </div>
+            <div class="footer">
+                <button class="aft-sel" (click)=done()>SEND</button>
+            </div>
+        </div>
+        <div *ngIf="showDone">
+            <div class="act-sec1 mb-130">
+                <p class="h-content1 mb-60">Great Job!</p>
+                <p class="p-text1 e-ltr">Your activity is complete.</p>
+            </div>
+            <div class="act-sec3 mb-20">
+                <img class="img-width" src="../../../assets/images/004-magic.svg">
+            </div>
+            <div class="act-sec4">
+                <div class="footer">
+                    <button class="aft-sel" (click)="navigate()">VIEW MORE</button>
+                </div>
+            </div>
+        </div>
+        <div class="welcome-screen" *ngIf="currentIndex == -1">
+            <div class="container-fluid m-p-0">
+                <div class="activity-card">
+
+                    <div class="act-sec1">
+                        <p class="lets-talk-values">Let's talk values.</p>
+                        <div class="act-sec2">
+                            <p class="p-text1">This is an activity that was sent to you by your teacher.</p>
+                            <p class="p-text2">It will take you about 10 minutes to complete in one sitting.</p>
+                        </div>
+                    </div>
+
+                    <div class="act-sec3">
+                        <img class="img-wdth" src="../../../assets/images/004-magic.svg">
+                    </div>
+
+                    <div class="act-sec4">
+                        <div class="footer">
+                            <button class="buttonBegin" (click)="currentIndex = 0">BEGIN</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div *ngIf="showError">
+    <div class="activity-card">
+        <nav class="navbar custom-navbar">
+            <div>
+                <div class="navbar-header color-white-bar" style="margin:0 15px">
+                    <div class="navbar-brand cursor-title color-dark">Unleash</div>
+                </div>
+            </div>
+        </nav>
+        <div class="act-sec1">
+            <p class="h-content1" style="color: silver">Oops !!</p>
+            <p class="p-text1">The Page You are looking for is not found.</p>
+        </div>
+    </div>
+</div>

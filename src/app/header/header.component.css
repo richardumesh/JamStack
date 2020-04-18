@@ -1,0 +1,153 @@
+.navbar-inverse {
+  background-color: white;
+  border-color: white;
+  border-radius: 0px;
+}
+
+.icon-bar {
+  background-color: #555555;
+}
+
+.nav>li>a:focus, .nav>li>a:hover {
+  background-color:transparent;
+}
+
+.navbar-brand {
+  color: #0D0D0D;
+  font-size: 37px;
+  letter-spacing: 2.68px;
+  font-weight: 500;
+  font-family: var(--primary-font);
+}
+
+.cursor-title {
+  cursor: pointer;
+}
+
+.menu-items {
+  margin: 7px 0px;
+  font-family: var(--secondary-font);
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 0.24px;
+}
+.menu-items-settings{
+  margin: 7px -49px;
+  font-family: var(--secondary-font);
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 0.24px;
+
+}
+.logout{
+  margin: 7px 0px;
+  font-family: var(--secondary-font);
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 0.24px;
+  margin-right:50px;
+}
+
+.mt-16 {
+  margin-top: 16px;
+  margin-right:64px;
+}
+
+.color-dark {
+  color: #0D0D0D !important;
+}
+
+.color-white {
+  color: #FFFFFF !important
+}
+
+.color-white-bar{
+  background-color: #FFFFFF !important;
+}
+
+.color-dark-bar{
+  background-color: #0D0D0D !important;
+}
+
+.menu-items:hover{
+  background: transparent;
+  cursor: pointer;
+}
+
+.dropdown-content-head {
+  color: #444444;	
+  font-family: var(--secondary-font);
+  font-size: 17px;	
+  font-weight: 600;	
+  letter-spacing: 0.5px;	
+  text-align: left;
+}
+
+.dropdown-content {
+  color: #444444;	
+  font-family: var(--secondary-font);
+  font-size: 17px;	
+  font-weight: 300;	
+  letter-spacing: 0.5px;	
+  text-align: center;
+}
+
+.create-account {
+  color: #FFFFFF;
+  font-family: var(--secondary-font);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.26px;
+  margin-top: 13px;
+  background-image: linear-gradient(to top, #3b3a3a, #8a8a8a);
+  padding: 5px 10px;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.signIn {
+  color: #FFFFFF;
+  font-family: var(--secondary-font);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.26px;
+  /* background: #5c5c5c; */
+  margin-top: 13px;
+  background-image: linear-gradient(to top, #3b3a3a, #8a8a8a);
+  padding: 5px 40px;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+::ng-deep .mat-menu-panel {
+  min-width: 140px !important;
+  max-width: 280px;
+  border-radius: 10px !important;
+  position: relative;
+  right: 107px;
+  top: 6px;
+}
+
+@media(max-width:320px){
+  .navbar-header {
+    margin: 0px !important
+  }
+}
+
+@media(max-width:768px) {
+  .mt-16 {
+    margin-top: 0px;
+    padding: 10px 15px;
+  }
+  ::ng-deep .mat-menu-panel {
+    right: 0px;
+    top: 0px;
+  }
+  .profile-header {
+    margin-left: 0%;
+  }
+}
+
+.root-container {
+  padding:0 30px;
+}

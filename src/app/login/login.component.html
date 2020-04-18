@@ -1,0 +1,68 @@
+<!-- registration page Begining -->
+<div class="container-fluid login-container-block">
+    <div *ngIf="loading" class="loader-container">
+        <div class="loader"></div>
+    </div>
+    <app-header></app-header>
+    <div class="container">
+        <div class="login-form-container">
+            <div class="form-header">
+                Sign In
+            </div>
+            <div class="google-class-block">
+                <button type="button" class="google-button" (click)="googleAuth2();">
+                    <span class="google-button__icon">
+                        <img src="./../../assets/images/GoogleIcon.svg">
+                    </span>
+                    <span class="google-button__text">Sign In with Google</span>
+                  </button>
+           </div>
+
+            <div class="divider"> OR </div>
+
+            <div class="login-form-block">
+                <form [formGroup]="loginForm">
+                    <div class="row form-group inputAlign">
+                        <div class="formText">
+                            <div> EMAIL ADDRESS </div>
+                        </div>
+                        <div class="formInput">
+                            <input formControlName="email" id="email" type="text"
+                                oninput="this.value = this.value.toLowerCase()" placeholder="Email Address"
+                                class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && loginForm.controls.email.errors }">
+                        </div>
+                        <div class="error" *ngIf="submitted && loginForm.controls.email.errors?.required">Email is
+                            required</div>
+                        <div class="error" *ngIf="submitted && loginForm.controls.email.errors?.email">Incorrect email address. Please try again.</div>
+                    </div>
+                    <div class="row form-group inputAlign">
+                        <div class="formText">
+                            <div> PASSWORD </div>
+                        </div>
+                        <div class="formInput">
+                            <input formControlName="password" id="password" type="password" placeholder="Type here..."
+                                class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && loginForm.controls.password.errors }">
+                        </div>
+
+                        <div class="error" *ngIf="submitted && loginForm.controls.password.errors?.required">
+                            Password
+                            is required</div>
+                        <div class="error" *ngIf="submitted && passwordError == true">
+                            Incorrect Password
+                        </div>
+                        <div class="error" *ngIf="invalidLogin">{{ invalidLogin }}</div>
+                    </div>
+
+                    <div class="forgetPassword"><a [routerLink]="'/reset-password'">Forgot Password?</a></div>
+
+                    <div class="nextBtn-block">
+                        <button type="button" class="btn buttonStart w-100" (click)="loginUser()">Sign In</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <app-footer></app-footer>
+</div>

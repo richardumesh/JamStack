@@ -1,0 +1,91 @@
+<div *ngIf="loading" class="loader-container">
+    <div class="loader"></div>
+</div>
+<div>
+    <nav class="navbar custom-navbar">
+        <div>
+            <div class="navbar-header color-white-bar" style="margin:0 15px">
+                <div class="navbar-brand cursor-title color-dark">Unleash</div>
+            </div>
+        </div>
+    </nav>
+    <div *ngIf="showError">
+        <div class="activity-card">
+
+            <div class="act-sec1">
+                <p class="h-content1" style="color: silver">Oops !!</p>
+                <p *ngIf="topicDate" class="p-text1">The Link is not active yet. Please come back on
+                    {{topicDate | date:'E MMM d y, h:mm a'}}</p>
+                <p *ngIf="pageNotFound" class="p-text1"> The Page You are looking for is not found.</p>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="!showError && showRegister">
+        <!-- <app-register-invit-link></app-register-invit-link> -->
+        <div class="container">
+            <div class="reg-form-container">
+                <div class="form-header">
+                    <div id=wrapper>
+                        <div class='regFont'>Please Register Here</div>
+                        <div class="studentFont">Fill up the student details</div>
+                    </div>
+                </div>
+                <div class="reg-form-block">
+                    <form [formGroup]="regForm">
+                        <div class="row form-group inputAlign">
+                            <div class="formInput">
+                                <input formControlName="firstName" id="firstName" type="text" placeholder="First Name"
+                                    class="form-control"
+                                    [ngClass]="{ 'is-invalid': submitted && regForm.controls.firstName.errors }">
+                            </div>
+                            <div class="error" *ngIf="submitted && regForm.controls.firstName.errors?.required">First
+                                Name is
+                                required</div>
+                            <div class="error" *ngIf="submitted && regForm.controls.firstName.errors?.pattern">Please
+                                enter only alphabets.</div>
+                        </div>
+                        <div class="row form-group inputAlign">
+                            <div class="formInput">
+                                <input formControlName="lastName" id="lastName" type="text" placeholder="Last Name"
+                                    class="form-control"
+                                    [ngClass]="{ 'is-invalid': submitted && regForm.controls.lastName.errors }">
+                            </div>
+                            <div class="error" *ngIf="submitted && regForm.controls.lastName.errors?.required">Last Name
+                                is
+                                required</div>
+                            <div class="error" *ngIf="submitted && regForm.controls.lastName.errors?.pattern">Please
+                                enter only alphabets.</div>
+                        </div>
+                        <div class="row form-group inputAlign">
+                            <div class="formInput">
+                                <input formControlName="email" id="email" type="text"
+                                    oninput="this.value = this.value.toLowerCase()" placeholder="Email Address"
+                                    class="form-control"
+                                    [ngClass]="{ 'is-invalid': submitted && regForm.controls.email.errors }">
+                            </div>
+                            <div class="error" *ngIf="submitted && regForm.hasError('atLeastOne')">Email is
+                                required</div>
+                            <div class="error" *ngIf="submitted && regForm.controls.email.errors?.email">Incorrect email
+                                address. Please try again.</div>
+                        </div>
+                        <div class="row form-group inputAlign">
+                            <div class="formInput">
+                                <input formControlName="mobileNumber" id="mobileNumber" type="text"
+                                    placeholder="Mobile Number" class="form-control"
+                                    [ngClass]="{ 'is-invalid': submitted && regForm.controls.email.errors }">
+                            </div>
+                            <div class="error" *ngIf="submitted && regForm.hasError('atLeastOne')">Mobile number is
+                                required</div>
+                            <div class="error" *ngIf="submitted && regForm.controls.mobileNumber.errors?.pattern">
+                                Incorrect Mobile number
+                                . Please try again.</div>
+                        </div>
+                        <div class="nextBtn-block">
+                            <button type="submit" class="btn buttonStart " (click)="registerAccount()">Register</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

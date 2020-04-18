@@ -1,0 +1,22 @@
+node ('kube-m'){
+     def app
+
+     stage('Clone repository') {
+         /* Let's make sure we have the repository cloned to our workspace */
+
+         checkout scm
+     }
+
+     stage('Deploy on kubernetes') {
+         sh "kubectl apply -f kube-unleash-dev.yml"
+         sh "bash ./image-update.sh"
+         }
+
+     stage('Verify running pod & service') {
+         sh 'sleep 25'
+         sh "kubectl -n develop get pods -l app=dev-unleash-ui"
+         sh "kubectl -n develop get svc dev-unleash-ui"
+         echo "Application deployed Successfully!!"
+
+ }
+ }

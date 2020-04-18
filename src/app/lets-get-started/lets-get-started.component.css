@@ -1,0 +1,128 @@
+
+.lets-get-started-container {
+  display: flex;
+  width: 100%;
+  max-width: 480px;
+  padding: 30px;
+  margin: auto;
+  /* top: 50%; */
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  /* margin-top: 2%; */
+  /* opacity: 0.8; */
+  border-radius: 8px;
+  background-color: #EFEFEF;
+  /* border: 1px solid black; */
+  box-shadow: 0 4px 10px 0 rgba(108, 108, 108, 0.5);
+  margin-bottom: 83px;
+}
+
+
+.row1 {
+  background-image: url("../../assets/images/sharon-mccutcheon-532782-unsplash.jpg");
+  width: 100%;
+  min-height: 100%;
+  align-items: flex-end;
+  justify-content: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.example-form {
+  /* min-width: 150px; */
+  /* min-width: 300px; */
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.title {
+  color: #444444;
+  font-family:var(--primary-font);
+  font-size: 29px;
+  font-weight: 600;
+  line-height: 35px;
+  text-align: center;
+}
+
+.content {
+  font-family: var(--secondary-font);
+  font-size: 19px;
+  font-weight: 500;
+  letter-spacing: 0.41px;
+  line-height: 26px;
+  text-align: center;
+  max-width: 346px;
+}
+
+.matSelect {
+  line-height: 35px !important;
+}
+
+::ng-deep .mat-select-panel {
+  position: relative !important;
+  top: 50px !important;
+}
+
+.next-button {
+  border-radius: 11px;
+  /* background-image: linear-gradient(to right, rgb(115, 203, 224), #ccf5ff); */
+  /* background: linear-gradient(2.41deg, #59B3CA 0%, rgb(180, 221, 230) 56.27%, #FFFFFF 100%); */
+  box-shadow: 0 2px 6px 0 rgba(152, 152, 152, 0.18);
+  height: 40px;
+  color: white;
+  width: 100%;
+  border: rgb(115, 203, 224);
+  font-size: 18px;
+  background:
+    linear-gradient(to top, rgb(106, 174, 190) 0%
+      /*bottom-right color*/
+      , rgb(116, 203, 224) 50%
+      /*middle color*/
+      , #a5e8f8 100%
+      /*top-left color*/
+    ),
+    linear-gradient(#95D0DE, #95D0DE)
+    /*"faked" black background make sure to add last or it will appear before the transparent/colored layer*/
+  ;
+}
+
+@media screen and (max-width: 600px) {
+  .row1 {
+    height: auto;
+    min-height: 100%;
+  }
+
+  ::ng-deep .mat-select-panel {
+    height: 160px !important;
+    position: relative;
+    top: 175px !important;
+  }
+}
+
+@media screen and (min-width: 320px) {
+  ::ng-deep .mat-select-panel {
+    height: 160px !important;
+    position: relative;
+    top: 45px !important;
+    min-width: calc(100% + 58px) !important;
+  }
+}
+/* iPhone X in portrait */
+
+/* @media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) {
+  html,body{
+      height: auto !important;
+  }
+} */
+
+/* iphone 5 */
+/* @media screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) {
+  html, body{
+    height: auto !important;
+  }
+} */

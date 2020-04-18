@@ -1,0 +1,170 @@
+.heading-work {
+    color: #474747;
+    font-family: 'Rubik';
+    font-size: 34px;
+    font-weight: 500;
+    letter-spacing: 0.68px;
+    line-height: 41px;
+  }
+  
+  .content-work {
+    color: #212121;
+    font-family: 'Assistant';
+    font-size: 29px;
+    font-weight: 300;
+    line-height: 39px;
+    max-width: 686px;
+  }
+
+  .flex-reverse-row{
+    display: flex;
+    flex-wrap: wrap-reverse;
+  }
+  .heading {
+    color: black;
+    font-family: 'Rubik';
+    font-size: 48px;
+    font-weight: 500;
+    letter-spacing: 0.88px;
+    line-height: 53px;
+    text-shadow: 0 2px 12px 0 rgba(131, 131, 131, 0.5);
+  }
+  
+  
+  
+  .row1 {
+    background-image: url("../../assets/images/kelli-tungay-324329-unsplash.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    min-height: 550px;
+    align-items: flex-end;
+    justify-content: center;
+  }
+  .m-t-15{
+    margin-top: 15px;
+  }
+  .m-60 {
+    margin: 60px 0px
+  }
+  .m-t-46{
+    margin-top: 46px;
+  }
+  .m-t-50{
+    margin-top: 50px;
+  }
+  .m-t-60{
+    margin-top: 60px;
+  }
+  .m-t-30{
+    margin-top: 30px;
+  }
+  .m-b-50{
+    margin-bottom: 50px;
+  }
+  .m-t-130{
+    margin-top: 130px;
+  }
+  .p-b-100{
+    padding-bottom: 100px;
+  }
+  .content {
+    color: black;
+    font-family: 'Assistant';
+    font-size: 26px;
+    font-weight: 500;
+    line-height: 35px;
+    max-width: 698px;
+  }
+  
+  .text-content{
+    max-width: 722px;
+    margin-left: 30px;
+  }
+  
+  .row10 {
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  
+  .row100 {
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 0px 30px;
+  }
+  
+  .flex-display {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: column
+  }
+  
+  .flex-display-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: row
+  }
+
+  .learn-more{
+    font-family: 'Assistant';
+    font-size: 20px;
+    font-weight: 900;
+    letter-spacing: 0.4px;
+    line-height: 27px;
+  }
+  
+  @media(max-width:369px){
+    .row100 {
+      padding: 0px !important
+    }
+    .content {
+      line-height: 21px !important;
+    }
+  
+    .heading {
+      font-size: 36px !important;
+    }
+    .text-content{
+      max-width: 686px;
+      margin-left: 0px;
+      margin-top: 30px;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    .heading-work{
+      margin-top: 40px;
+    }
+    .text-content{
+      margin-left: 0px;
+    }
+    .flex-display-row{
+      width: 100%;
+      text-align: center;
+    }
+  }
+  
+  @media(max-width:767px) {
+    .content {
+      font-size: 15px !important
+    }
+  
+    .container {
+      text-align: center;
+      padding: 30px;
+    }
+    .content {
+      line-height: 23px !important;
+    }
+  
+    .heading {
+      font-size: 35px !important;
+    }
+    .content-work {
+      font-size: 20px;
+      line-height: 30px;
+    }
+  }
+  

@@ -1,0 +1,228 @@
+
+<div *ngIf="buildRosterPage" >
+  <p class="step1-title m-t-40 m-b-20">Build your Roster</p>
+  <p class="step1-content m-t-20">A roster lists the students who will recieve the helpful writing
+    activities.
+    Below are three ways to build your roster.</p>
+  <div class="row m-t-40 m-b-20 padding-1">
+    <div class="col-sm-4 display-flex-row m-5">
+      <div (click)="buildRoster('googleclassroom')" class="cursor-pointer roster-build-options">
+        <img src="../../../assets/images/classroom-logo.png" height="30px" width="30px" />
+        <p *ngIf="userDetails === 'Email'" class="roster-title m-t-10">Connect to Google Classroom</p>
+        <p *ngIf="userDetails === 'Google'" class="roster-title m-t-10">Build a Roster via Google Class Room</p>
+        <p class="roster-content">and integrate your existing rosters.</p>
+      </div>
+    </div>
+    <div class="col-sm-4 display-flex-row m-5">
+      <div (click)="buildRoster('googlesheet')" class="cursor-pointer roster-build-options p12">
+        <img src="../../../assets/images/excel-sheet-logo.png" height="35px" width="35px" />
+        <p class="roster-title" style="margin-top: 5px;">Download Roster Spreadsheet Template</p>
+        <p class="roster-content">and upload your roster data.</p>
+      </div>
+    </div>
+    <div class="col-sm-4 display-flex-row m-5 cursor-pointer">
+      <label class="roster-build-options  cursor-pointer" for="file2">
+        <img src="../../../assets/images/link-icon.png" height="30px"
+          width="30px" />
+        <p class="roster-title m-t-10">Create a Roster Invitation Link</p>
+        <p class="roster-content">and share the link with your students.</p>
+      </label>
+      <button style="display:none" type="button" id="file2" (click)="buildRoster('InvitationLink')" ></button>
+    </div>
+  </div>
+</div>
+
+<!-- connect to Google class Room -->
+<div *ngIf="googleClassRoom">
+  <p class="step1-title m-t-40">Select Google Classroom Account</p>
+  <div *ngFor="let item of availClassRooms" class="account-container">
+    <div class="row m-t-20 accounts" (click)='selectedAccount(item)'>
+      <div class="col-sm-1">
+        Image
+      </div>
+      <div class="emails">{{item.gmail}}</div>
+    </div>
+  </div>
+</div>
+<div *ngIf="className">
+  <p class="step1-title m-t-40">Google Classroom is Connected!</p>
+  <p class="subtitle-class-room-select m-t-20">Search for the class you wish to send activity to:</p>
+  <p *ngIf="beforeSelectClass" class="select-class-name m-t-40" (click)='selectClass()'>Google Class Name<span><img
+        src="../../../assets/images/arrow-down.png" height="25" width="25px;"></span></p>
+  <div *ngIf="afterSelectClass">
+    <p class="classLable m-t-40">Google Class Name</p>
+    <p *ngIf="selectedClassName" class="selected-class-name">{{selectedClassName.name}}<span><span 
+          class="glyphicon glyphicon-menu-up"></span></span></p>
+    <div class="classes-box">
+      <div class="scroll-window" slimScroll [scrollEvents]="scrollEvents">
+        <p class="class-item" (click)='classNameSelected(item)' *ngFor="let item of availClass">{{item.name}}</p>
+      </div>
+    </div>
+  </div>
+  <button [disabled] = "!studentsList" class="buttonStart m-t-b-90" (click) = "sendRoster('google')" matStepperNext>NEXT</button>
+</div>
+
+<!-- Download Roster SpreadsheetTemplate -->
+<div *ngIf="googlePage">
+  <p class="step1-title m-t-40">Build your Roster</p>
+  <p class="step1-content m-t-20">Download the Unleash Excel file to build a personalized roster list of
+    your students. Students Email ID or Mobile Number is required.
+  </p>
+  <button class="download-google-sheet m-t-20" (click)="exportAsXLSX()"><img
+      src="../../../assets/images/excel-sheet-logo.png" height="35px"
+      width="35px" class="m-r10"> DOWNLOAD </button>
+  <p class="step1-content m-t-20 m-b-20">Upload the completed roster to Unleash.</p>
+  <div class="file-upload">
+      <div class="row">
+      <label style="align-items:center; width:34%; margin-bottom:4px" >
+        <input type="file" #fileuploadnew (change)="uploadExcel($event)" name="fileupload" value="fileupload"
+          id="fileuploadnew" > 
+          <label class="custom-file-upload" for="fileuploadnew">
+            <input type="file"  #fileuploadnew (change)="uploadExcel($event)"  value="" id="fileuploadnew"/>Upload
+        </label>
+        <div class="error" *ngIf = "excelType" >{{excelfileType}}</div>
+        <div class="error" *ngIf = "excelfill" >{{fileEmpty}}</div>
+      </label>
+    </div>
+    <div class="row">
+      <label style="align-items:center">
+        <input type="file" #fileuploadnew (change)="uploadExcel($event)" name="fileupload" value="fileupload"
+          id="fileuploadnew" > 
+          <label *ngIf= viewErrorButton  for="fileupload">
+            <div  data-toggle="modal" (change)="uploadExcel($event)"  data-target="#ExcelValidModal" class="upload-button"
+            data-keyboard="false" data-backdrop="static">View Errors</div>
+          </label>
+      </label>
+      </div>
+    <div class="row" style="padding : 0px 33px;">
+    <div class="col-sm-12">
+      <div *ngIf = "nextButton" class="hint-text">Success! Click "NEXT" to send or schedule activity.</div>
+    </div>
+    </div>
+  </div>
+  <input style="display:none" type="file" id="file2" ng2FileSelect [uploader]="uploader"
+    (onFileSelected)="onFileSelected($event)" />
+  <button  [disabled] = !nextButton  class="buttonStart m-t-20" (click)="getAllDetails();"  matStepperNext >NEXT</button>
+</div>
+
+<!-- Validation table for Excel rows -->
+<div class="modal fade remind-modal" id="ExcelValidModal" role="dialog">
+  <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+          <div class="modal-header">
+              <img src="../../../assets/images/cancel.png" class="close" data-dismiss="modal" height="20px"
+                  width="20px">
+          </div>
+          <div class="modal-body">
+              <div class="modal-title remind-header">Excel Error Details</div>
+              <p class="remind-sub-heading m-t-30">Please fill the details of the students properly
+              </p>
+              <div class="bg-color-grey modal-remind-container">
+                  <div class="table-responsive">
+                    <div class="body">
+                      <form #testForm="ngForm" (ngSubmit)="testForm.form.valid" novalidate>
+                        <div class="example-container mat-elevation-z0">
+                                      <mat-table  [dataSource]="userListMatTabDataSource" >
+                                          <ng-container matColumnDef="firstName">
+                                            <mat-header-cell *matHeaderCellDef > Student First Name</mat-header-cell>
+                                            <mat-cell *matCellDef="let user; let i = index;">
+                                                <div class="form-group" [class.text-danger]="firstName.invalid">
+                                                    <input required type="text" #firstName="ngModel" class="form-control" 
+                                                    name="firstName-{{i}}" [(ngModel)]="user.firstName" 
+                                                    pattern="^[A-Za-z0-9 ]*[A-Za-z0-9][A-Za-z0-9 ]*$" required>
+                                                    <div  *ngIf="!firstName.invalid" style="height: 30px;"> </div>
+                                                    <div *ngIf="firstName.invalid" style="height: 30px;">
+                                                      <div *ngIf="firstName.errors.pattern">Enter only characters</div>
+                                                      <div *ngIf="firstName.errors.required ">FirstName Required</div>
+                                                  </div>
+                                                </div>
+                                            </mat-cell>
+                                        </ng-container>
+                                        <ng-container matColumnDef="lastName">
+                                          <mat-header-cell *matHeaderCellDef >Student Last Name</mat-header-cell>
+                                          <mat-cell *matCellDef="let user; let i = index;">
+                                                  <div class="form-group" [class.text-danger]="lastName.invalid">
+                                                          <input required type="text" #lastName="ngModel" class="form-control" 
+                                                          name="lastName-{{i}}" class="form-control" [(ngModel)]="user.lastName"
+                                                          pattern="^[A-Za-z0-9 ]*[A-Za-z0-9][A-Za-z0-9 ]*$"  required  >
+                                                          <div  *ngIf="!lastName.invalid" style="height: 30px;"> </div>
+                                                          <div *ngIf="lastName.invalid" style="height: 30px;">
+                                                            <div *ngIf="lastName.errors.pattern">Enter only characters</div>
+                                                            <div *ngIf="lastName.errors.required ">Lastname Required</div>
+                                                        </div>
+                                                  </div>
+                                          </mat-cell>
+                                      </ng-container>
+                                      <ng-container matColumnDef="phoneNo">
+                                        <mat-header-cell *matHeaderCellDef >Mobile Number</mat-header-cell>
+                                        <mat-cell *matCellDef="let user; let i = index;">
+                                                <div class="form-group" [class.text-danger]="phoneNo.invalid">
+                                                        <input type="text" #phoneNo="ngModel" class="form-control" 
+                                                        name="phoneNo-{{i}}" [(ngModel)]="user.phoneNo" placeholder="+10000000000"
+                                                        text [required] ="!user.emailId " pattern="^(\+91[\-\s]?)?[0]?(91)?[6789]\d{9}$"
+                                                       >
+                                                       <div  *ngIf="!phoneNo.invalid" style="height: 30px;"> </div>
+                                                        <div *ngIf="phoneNo.invalid" style="height: 30px;">
+                                                          <div *ngIf="phoneNo.errors.pattern">Invalid Mobile Number</div>
+                                                          <div *ngIf="phoneNo.errors.required ">Mobile Number Required</div>
+                                                      </div>
+                                                </div>
+                                            </mat-cell>
+                                    </ng-container>
+                                    <ng-container matColumnDef="emailId">
+                                      <mat-header-cell *matHeaderCellDef >Email ID</mat-header-cell>
+                                      <mat-cell *matCellDef="let user; let i = index;">
+                                          <div class="form-group" [class.text-danger]="emailId.invalid">
+                                                  <input type="email"  #emailId="ngModel" class="form-control"
+                                                  name="emailId-{{i}}" [(ngModel)]="user.emailId" 
+                                                  email [required] ="!user.phoneNo" pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$"
+                                                    >
+                                                  <div  *ngIf="!emailId.invalid"  style="height: 30px;"></div>
+                                                  <div *ngIf="emailId.invalid" style="height: 30px;">
+                                                    <div *ngIf="emailId.errors.pattern">Invalid Email-Id</div>
+                                                    <div *ngIf="emailId.errors.required && !user.phoneNo">Email-Id Required</div>
+                                                </div>
+                                              </div>
+                                      </mat-cell>
+                                  </ng-container>
+                                          <mat-header-row *matHeaderRowDef="columnList; "></mat-header-row>
+                                          <mat-row *matRowDef="let row; columns: columnList; let i = index;" [class.selected]="selectedRow == row.id"
+                                              [class.edited]="row.edited || row.id == undefined" (click)="rowClick(row.id)">
+                                          </mat-row>
+                                      </mat-table>
+                                    </div>
+                                    <div style="padding-top:5px; position:relative;margin-left: 605px;right: 10px;">
+                                        <input class="btn btn-sm btn-primary" type="submit" [disabled]="!testForm.valid" 
+                                         #closeModel id="closeModel" data-dismiss="modal" (click)="save();">
+                                    </div>
+                              </form>
+                        </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+<!-- Send Invitation Link to Students-->
+<div *ngIf="sendlink">
+  <p class="step1-title m-t-40">Build your Roster</p>
+  <p class="step1-content m-t-20">Generate an Unleash Activity Link to share with your students. You can share it via email or text message.
+  </p>
+  <button (click)="generateLink()" class="download-google-sheet m-t-20" >
+    <img src="../../../assets/images/link-icon.png" height="35px"
+      width="35px" class="m-r10"> GENERATE LINK  </button>
+  <p class="step1-content m-t-20 m-b-20">Share the link below with the students you wish to complete activity</p>
+  <div class="file-upload">
+      <div class="row" style="display:flex;">
+      <div id="wrapper">
+        <input type="text" class="uploader" [(ngModel)]="linkToSend" readonly/> 
+      <div  *ngIf="linkCopied" class="hint-Linktext">Link has been copied to clipboard. Go ahead and share!</div>
+    </div>
+      <label style="width:34%; margin-bottom:4px" >
+        <button [disabled] = "!linkToSend" (click)="copyLink(linkToSend)" type="button" class="custom-link-upload" >COPY</button>
+      </label>
+    </div>
+  </div>
+  <button [disabled] = "!invitationallow" class="buttonStart m-t-20" (click) = "sendRoster('invitationLink')"  matStepperNext >Next</button>
+</div>
